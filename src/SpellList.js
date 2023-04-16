@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
+import SpellStub from "./spellStub";
 
 export default function SpellList() {
   const [ready, setReady] = useState(false);
   const [spell_list, setSpellList] = useState({});
+  const [spell_levels, setSpellLevels] = useState([]);
+
   function handleResponse(response) {
-    // var spell_names = [];
-    // for (let i = 0; i < response.data.length; i++) {
-    //   spell_names = spell_names.concat(response.data[i].spell_name);
-    // }
     setSpellList(response.data);
     setReady(true);
+    var levels = [];
+    for (let i = 0; i < response.data.length; i++) {
+      if (levels.includes(response.data[i].level)) {
+        //pass
+      } else {
+        levels = levels.concat(response.data[i].level);
+      }
+    }
+    setSpellLevels(levels);
   }
 
   if (ready) {
@@ -20,9 +28,11 @@ export default function SpellList() {
         {spell_list.map((spell_list, spell_name) => {
           return (
             <div key={spell_name}>
-              <h3>
-                {spell_list.spell_name} {spell_list.level} {spell_list.prepared}
-              </h3>
+              <SpellStub
+                spell_name={spell_list.spell_name}
+                level={spell_list.level}
+                status={spell_list.prepared}
+              />
             </div>
           );
         })}
