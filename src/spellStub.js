@@ -3,6 +3,7 @@ import "./spellStub.css";
 import PrepareBtn from "./PrepareBtn";
 
 export default function SpellStub(props) {
+  console.log(props);
   return (
     <div className="spell_pill row d-flex justify-content-between">
       <div className="col-sm-8">

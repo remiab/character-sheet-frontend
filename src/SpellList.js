@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import SpellStub from "./spellStub";
+import LevelCard from "./LevelCard";
 
 export default function SpellList() {
   const [ready, setReady] = useState(false);
-  const [spell_list, setSpellList] = useState({});
   const [spell_levels, setSpellLevels] = useState([]);
 
   function handleResponse(response) {
-    setSpellList(response.data);
     setReady(true);
-    var levels = [];
+    let levels = [];
     for (let i = 0; i < response.data.length; i++) {
       if (levels.includes(response.data[i].level)) {
         //pass
@@ -18,7 +16,20 @@ export default function SpellList() {
         levels = levels.concat(response.data[i].level);
       }
     }
-    setSpellLevels(levels);
+    let levels_dict = {};
+    for (let i = 0; i < levels.length; i++) {
+      levels_dict[i] = {};
+    }
+    for (let e = 0; e < response.data.length; e++) {
+      if (levels.includes(response.data[e].level)) {
+        levels_dict[response.data[e].level][response.data[e].spell_name] = [
+          response.data[e],
+        ];
+      } else {
+        //pass
+      }
+    }
+    setSpellLevels(levels_dict);
   }
 
   if (ready) {
@@ -26,17 +37,15 @@ export default function SpellList() {
       <div className="container">
         <div className="wrapper col-md-6 justify-content-center">
           <h2>Ithen's spell list</h2>
-          {spell_list.map((spell_list, spell_name) => {
-            return (
-              <div key={spell_name}>
-                <SpellStub
-                  spell_name={spell_list.spell_name}
-                  level={spell_list.level}
-                  status={spell_list.prepared}
-                />
-              </div>
-            );
-          })}
+          <div>
+            {Object.entries(spell_levels).map(([spell_levels, level]) => {
+              return (
+                <div key={spell_levels}>
+                  <LevelCard props={level} level={spell_levels} />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
