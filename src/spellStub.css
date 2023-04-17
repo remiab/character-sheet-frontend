@@ -1,4 +1,10 @@
+:root {
+  --primary-text-color: #362a52;
+  --primary-hover-color: #211a33;
+}
+
 .spell_pill {
+  align-items: center;
   border: solid 1px #030303;
   border-radius: 10px;
   max-width: 250px;
@@ -13,11 +19,33 @@
   vertical-align: middle;
 }
 
-.standard-btn {
-  background-color: #7489a3;
-  box-shadow: 1px 2px rgb(0 0 0 / 25%);
+.standard-sm-btn {
   font-size: 10px;
   line-height: 1;
   padding: 5px;
-  vertical-align: middle !important;
+  vertical-align: middle;
+}
+
+.prepare-btn {
+  background-color: var(--primary-text-color);
+  box-shadow: 1px 2px rgb(0 0 0 / 25%);
+  color: white;
+}
+.prepare-btn:hover {
+  background-color: var(--primary-hover-color);
+  color: white;
+}
+
+.unprepare-btn {
+  border: solid 1px var(--primary-text-color);
+  color: var(--primary-text-color);
+}
+
+.unprepare-btn:hover {
+  background-color: var(--primary-text-color);
+  color: white;
+}
+
+.btn-container {
+  display: inline;
 }

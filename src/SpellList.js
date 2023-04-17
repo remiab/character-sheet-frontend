@@ -23,24 +23,21 @@ export default function SpellList() {
 
   if (ready) {
     return (
-      <div>
-        <h2>Ithen's spell list</h2>
-        {spell_list.map((spell_list, spell_name) => {
-          return (
-            <div key={spell_name}>
-              <SpellStub
-                spell_name={spell_list.spell_name}
-                level={spell_list.level}
-                status={spell_list.prepared}
-              />
-            </div>
-          );
-        })}
-        {/* <ul>
-          {spell_list.names.map((spell, index) => {
-            return <li key={index}>{spell}</li>;
+      <div className="container">
+        <div className="wrapper col-md-6 justify-content-center">
+          <h2>Ithen's spell list</h2>
+          {spell_list.map((spell_list, spell_name) => {
+            return (
+              <div key={spell_name}>
+                <SpellStub
+                  spell_name={spell_list.spell_name}
+                  level={spell_list.level}
+                  status={spell_list.prepared}
+                />
+              </div>
+            );
           })}
-        </ul> */}
+        </div>
       </div>
     );
   } else {

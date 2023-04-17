@@ -1,17 +1,18 @@
 import React from "react";
 import "./spellStub.css";
-// import axios from "axios"
+import PrepareBtn from "./PrepareBtn";
 
 export default function SpellStub(props) {
   return (
-    <div className="spell_pill d-flex justify-content-around">
-      <span className="col-sm-3 spell-display" id="spell_name">
-        {props.spell_name}
-      </span>
-      <span className="col-sm-1 spell-display" id="level">
-        {props.level}
-      </span>
-      <span className="col-sm-2- btn standard-btn">{props.status}</span>
+    <div className="spell_pill row d-flex justify-content-between">
+      <div className="col-sm-8">
+        <span className="spell-display d-flex" id="spell_name">
+          {props.spell_name}
+        </span>
+      </div>
+      <div className="col-sm-4 btn-container">
+        <PrepareBtn name={props.spell_name} status={props.status} />
+      </div>
     </div>
   );
 }
