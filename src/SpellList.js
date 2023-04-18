@@ -51,6 +51,9 @@ export default function SpellList() {
     );
   } else {
     let apiUrl = "/spell_list";
-    axios.get(apiUrl).then(handleResponse);
+    axios
+      .get(apiUrl)
+      .then(handleResponse)
+      .catch((err) => console.log(err));
   }
 }

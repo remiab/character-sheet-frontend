@@ -1,31 +1,40 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function PrepareBtn(props) {
+  const name = props.name.toLowerCase();
   const [prepared, setPrepared] = useState(props.status);
+  let apiUrl = `update/prepare/${name}`;
+  let update_dict = {};
+  update_dict["spell_name"] = name;
 
   function prepareSpell(event) {
     event.preventDefault();
-    setPrepared("N");
+    setPrepared("Y");
+    console.log(prepared);
+
+    update_dict["spell_status"] = "Y";
+
+    axios
+      .put(apiUrl, update_dict)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   }
 
   function unprepareSpell(event) {
     event.preventDefault();
-    setPrepared("Y");
-  }
+    setPrepared("N");
 
-  // if (prepared == 'Y'){
-  //     let display_status = 'PREPARED'
-  // } else{if (prepared == "N") {
-  //   let display_status = "PREPARE";
-  // } else { let display_status ="error"
-  // }}
+    update_dict["spell_status"] = "N";
+    axios.put(apiUrl, update_dict).catch((err) => console.log(err));
+  }
 
   if (prepared === "Y") {
     return (
       <button
         type="button"
         className="btn btn-sm col-12 standard-sm-btn prepare-btn"
-        onClick={prepareSpell}
+        onClick={unprepareSpell}
       >
         PREPARED
       </button>
@@ -36,7 +45,7 @@ export default function PrepareBtn(props) {
         <button
           type="button"
           className="btn btn-sm col-12 standard-sm-btn unprepare-btn"
-          onClick={unprepareSpell}
+          onClick={prepareSpell}
         >
           PREPARE
         </button>
