@@ -3,7 +3,7 @@ import SpellStub from "./spellStub";
 
 export default function LevelCard(props) {
   return (
-    <div className="level-card card">
+    <div className="LevelCard level-card card">
       <div className="card-title">{props.level}</div>
       <div>
         {Object.entries(props.props).map(([spell_name, spell_stats]) => {

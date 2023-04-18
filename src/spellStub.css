@@ -5,6 +5,10 @@
   --button-font-family: "Encode Sans", sans-serif;
 }
 
+.level-card-body {
+  flex-direction: row;
+}
+
 .spell_pill {
   align-items: center;
   border: solid 1px #030303;
