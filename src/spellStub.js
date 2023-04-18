@@ -4,7 +4,7 @@ import PrepareBtn from "./PrepareBtn";
 
 export default function SpellStub(props) {
   return (
-    <div className="spell_pill row d-flex justify-content-between">
+    <div className="spell_pill row d-flex justify-content-between align-items-center py-1">
       <div className="col-sm-8">
         <span className="spell-display d-flex" id="spell_name">
           {props.spell_name}

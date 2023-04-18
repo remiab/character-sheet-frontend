@@ -1,6 +1,8 @@
 :root {
   --primary-text-color: #362a52;
   --primary-hover-color: #211a33;
+  --primary-font-family: "Philosopher", sans-serif;
+  --button-font-family: "Encode Sans", sans-serif;
 }
 
 .spell_pill {
@@ -8,27 +10,28 @@
   border: solid 1px #030303;
   border-radius: 10px;
   max-width: 250px;
-  padding: 2px;
-  /* padding-right: 10px; */
-  margin: 5px;
+  margin: 2px;
 }
 
 .spell-display {
-  font-size: 12px;
-  padding: 10px;
+  font-family: var(--primary-font-family);
+  font-size: 14px;
   vertical-align: middle;
 }
 
 .standard-sm-btn {
-  font-size: 9px;
+  box-shadow: 1px 1px rgb(0 0 0 / 25%);
+  font-family: var(--button-font-family);
+  font-size: 7px;
+  font-weight: 500;
   line-height: 1;
+  margin-bottom: 2px;
   padding: 5px;
   vertical-align: middle;
 }
 
 .prepare-btn {
   background-color: var(--primary-text-color);
-  box-shadow: 1px 2px rgb(0 0 0 / 25%);
   color: white;
 }
 .prepare-btn:hover {
