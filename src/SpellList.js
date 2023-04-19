@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ManageSpellsSB from "./ManageSpellsSB";
 import LevelCard from "./LevelCard";
 
 export default function SpellList() {
@@ -35,21 +34,16 @@ export default function SpellList() {
 
   if (ready) {
     return (
-      <div className="container">
-        <div className="wrapper justify-content-center">
-          <div>
-            <ManageSpellsSB />
-          </div>
-          <h2>Ithen's spell list</h2>
-          <div>
-            {Object.entries(spell_levels).map(([spell_levels, level]) => {
-              return (
-                <div key={spell_levels}>
-                  <LevelCard props={level} level={spell_levels} />
-                </div>
-              );
-            })}
-          </div>
+      <div className="wrapper spell-book-wrapper justify-content-center flex-grow">
+        <h2 className="SpellBookTitle">Spell Book</h2>
+        <div>
+          {Object.entries(spell_levels).map(([spell_levels, level]) => {
+            return (
+              <div key={spell_levels}>
+                <LevelCard props={level} level={spell_levels} />
+              </div>
+            );
+          })}
         </div>
       </div>
     );

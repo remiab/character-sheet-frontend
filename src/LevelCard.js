@@ -1,10 +1,13 @@
 import React from "react";
 import SpellStub from "./spellStub";
+import LevelsDisplayDict from "./LevelsDisplayDict";
 
 export default function LevelCard(props) {
+  let display_level = LevelsDisplayDict(props.level);
+
   return (
     <div className="LevelCard level-card card">
-      <div className="card-title">{props.level}</div>
+      <div className="card-title level-group">{display_level}</div>
       <div>
         {Object.entries(props.props).map(([spell_name, spell_stats]) => {
           return (

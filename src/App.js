@@ -1,12 +1,11 @@
 import "./App.css";
-// import ManageSpellsSB from "./ManageSpellsSB";
-import SpellList from "./SpellList";
+import ManageSpellsSB from "./ManageSpellsSB";
 
 function App() {
   return (
     <div className="App">
-      <div className="SpellList">
-        <SpellList />
+      <div className="ManageSpellsSB">
+        <ManageSpellsSB />
       </div>
     </div>
   );

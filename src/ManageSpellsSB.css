@@ -1,0 +1,99 @@
+:root {
+  --primary-text-color: #362a52;
+  --primary-hover-color: #211a33;
+  --primary-font-family: "Philosopher", sans-serif;
+  --button-font-family: "Encode Sans", sans-serif;
+}
+
+.manage-spells {
+  width: 350px;
+}
+.manage-spells-hidden {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: 1000ms;
+}
+
+.manage-spells-active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: 1000ms;
+  overflow: auto;
+}
+
+.close-spells {
+  position: absolute;
+  top: 0;
+  left: 0px;
+}
+.SpellBookTitle {
+  color: var(--primary-text-color);
+  font-family: var(--primary-font-family);
+  margin-bottom: auto;
+  flex-shrink: 0;
+}
+
+.level-group {
+  font-family: var(--primary-font-family);
+}
+
+.level-card-body {
+  flex-direction: row;
+}
+
+.card-title {
+  padding-top: 10px;
+}
+
+.spell_pill {
+  align-items: center;
+  border-radius: 10px;
+  /* max-width: 250px; */
+  margin: 2px;
+}
+
+.spell-display {
+  font-family: var(--primary-font-family);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.standard-sm-btn {
+  box-shadow: 1px 1px rgb(0 0 0 / 25%);
+  font-family: var(--button-font-family);
+  font-size: 7px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 2px;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.prepare-btn {
+  background-color: var(--primary-text-color);
+  color: white;
+}
+.prepare-btn:hover {
+  background-color: var(--primary-hover-color);
+  color: white;
+}
+
+.unprepare-btn {
+  border: solid 1px var(--primary-text-color);
+  color: var(--primary-text-color);
+}
+
+.unprepare-btn:hover {
+  background-color: var(--primary-text-color);
+  color: white;
+}
+
+.btn-container {
+  display: inline;
+}

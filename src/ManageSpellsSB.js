@@ -1,35 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import SpellList from "./SpellList";
+import "./ManageSpellsSB.css";
 
 export default function ManageSpellsSB() {
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => setSidebar(true);
+  const hideSidebar = () => setSidebar(false);
+
   return (
-    <div>
-      <a
-        className="btn btn-primary"
+    <div className="ManageSpellsSB">
+      <button
+        className="btn standard-sm-btn"
         type="button"
-        data-bs-toggle="offcanvas"
-        href="#offcanvasRight"
-        role="button"
-        aria-controls="offcanvasRight"
+        target="#"
+        onClick={showSidebar}
       >
-        Toggle right offcanvas
-      </a>
+        MANAGE SPELLS
+      </button>
 
       <div
-        className="offcanvas offcanvas-end"
-        tabIndex="-1"
-        id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel"
+        className={
+          sidebar
+            ? "manage-spells manage-spells-active"
+            : "manage-spells manage-spells-hidden"
+        }
       >
-        <div className="offcanvas-title">
-          <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-          <button
-            type="button"
-            className="btn-close text-reset"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div className="offcanvas-body">...</div>
+        <button
+          type="button"
+          className="btn-close close-spells"
+          target="#"
+          aria-label="Close"
+          onClick={hideSidebar}
+        ></button>
+        <SpellList />
       </div>
     </div>
   );
