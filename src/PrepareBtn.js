@@ -11,14 +11,10 @@ export default function PrepareBtn(props) {
   function prepareSpell(event) {
     event.preventDefault();
     setPrepared("Y");
-    console.log(prepared);
 
     update_dict["spell_status"] = "Y";
 
-    axios
-      .put(apiUrl, update_dict)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    axios.put(apiUrl, update_dict).catch((err) => console.log(err));
   }
 
   function unprepareSpell(event) {
