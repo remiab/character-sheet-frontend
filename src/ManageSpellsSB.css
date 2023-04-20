@@ -75,6 +75,23 @@
   vertical-align: middle;
 }
 
+.spell-desc-container {
+  position: relative;
+}
+
+.SpellDescImg {
+  width: 90%;
+  /* height: auto; */
+  padding: 5px 0px;
+}
+
+.copy-to-clipboard {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  /* bottom: 0; */
+}
+
 .prepare-btn {
   background-color: var(--primary-text-color);
   color: white;

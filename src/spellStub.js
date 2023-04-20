@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PrepareBtn from "./PrepareBtn";
 import SpellDescImg from "./SpellDescImg";
-// import axios from "axios";
 
 export default function SpellStub(props) {
   const [dropdown, SetDropDown] = useState(false);

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FaCopy } from "react-icons/fa";
 
 export default function SpellDescImg(props) {
   const [imageUrl, SetImageUrl] = useState({});
   const spell_name = props.name.toLowerCase();
+  const spellImageID = `desc-image-${spell_name.replace(" ", "-")}`;
+  const imageElement = document.getElementById(spellImageID);
 
   function handleResponse(response) {
     let spellUrl = `https://drive.google.com/uc?export=view&id=${response.data[0].drive_id}`;
@@ -23,12 +26,20 @@ export default function SpellDescImg(props) {
 
   if (props.dropdown) {
     return (
-      <img
-        className="SpellDescImg"
-        src={imageUrl["image_url"]}
-        alt="spell-description"
-        width={250}
-      />
+      <div className="container ">
+        <div className="spell-desc-container">
+          <img
+            className="SpellDescImg"
+            src={imageUrl["image_url"]}
+            alt="spell-description"
+            id={spellImageID}
+            width={250}
+          />
+          <button className="copy-to-clipboard btn">
+            <FaCopy />
+          </button>
+        </div>
+      </div>
     );
   }
 }
