@@ -6,7 +6,6 @@ export default function SpellDescImg(props) {
   const [imageUrl, SetImageUrl] = useState({});
   const spell_name = props.name.toLowerCase();
   const spellImageID = `desc-image-${spell_name.replace(" ", "-")}`;
-  const imageElement = document.getElementById(spellImageID);
 
   function handleResponse(response) {
     let spellUrl = `https://drive.google.com/uc?export=view&id=${response.data[0].drive_id}`;
@@ -35,9 +34,9 @@ export default function SpellDescImg(props) {
             id={spellImageID}
             width={250}
           />
-          <button className="copy-to-clipboard btn">
+          {/* <button className="copy-to-clipboard btn">
             <FaCopy />
-          </button>
+          </button> */}
         </div>
       </div>
     );
