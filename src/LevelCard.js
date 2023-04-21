@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SpellStub from "./spellStub";
 import LevelsDisplayDict from "./LevelsDisplayDict";
 
