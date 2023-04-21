@@ -39,6 +39,12 @@
   left: 0px;
   z-index: 6;
 }
+
+.title-prepared-spells-container {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
 .SpellBookTitle {
   background-color: var(--light-background-color);
   color: var(--primary-text-color);
@@ -47,9 +53,6 @@
   padding-bottom: 15px;
   margin-bottom: auto;
   flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  z-index: 5;
 }
 
 .level-group {

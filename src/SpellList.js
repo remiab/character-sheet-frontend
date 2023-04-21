@@ -35,7 +35,9 @@ export default function SpellList() {
   if (ready) {
     return (
       <div className="wrapper spell-book-wrapper justify-content-center flex-grow">
-        <h2 className="SpellBookTitle">Spell Book</h2>
+        <div className="title-prepared-spells-container">
+          <h2 className="SpellBookTitle">Spell Book</h2>
+        </div>
         <div>
           {Object.entries(spell_levels).map(([spell_levels, level]) => {
             return (
