@@ -8,17 +8,23 @@ export default function SpellList() {
   const [prepared_cantrips, setCountCantrips] = useState(0);
   const [prepared_spells, setCountSpells] = useState(0);
 
+  const [cantrip_limit_met, setCantripLimitTrigger] = useState(false);
+  const [spell_limit_met, setSpellLimitTrigger] = useState(false);
+
+  let cantrip_limit = 4;
+  let spell_limit = 14;
+
   function updatePrepared(cnt, lvl) {
-    console.log(`click registered to ${cnt}`);
-    console.log(lvl);
     if (lvl === 0) {
       let to_add = prepared_cantrips;
       to_add += cnt;
       setCountCantrips(to_add);
+      setCantripLimitTrigger(to_add >= cantrip_limit);
     } else {
       let to_add = prepared_spells;
       to_add += cnt;
       setCountSpells(to_add);
+      setSpellLimitTrigger(to_add >= spell_limit);
     }
   }
 
@@ -59,16 +65,20 @@ export default function SpellList() {
       }
     }
     setSpellLevels(levels_dict);
+    setCantripLimitTrigger(count_cantrips >= cantrip_limit);
+    setSpellLimitTrigger(count_spells >= spell_limit);
   }
 
   if (ready) {
-    console.log(prepared_cantrips);
-    console.log(prepared_spells);
     return (
       <div className="wrapper spell-book-wrapper justify-content-center flex-grow">
         <div className="title-prepared-spells-container">
           <h2 className="SpellBookTitle">Spell Book</h2>
-          <p>Prepared spells </p>
+          <div className="prepared-spells">
+            <div className="prepared-spells-title">Prepared spells:</div>
+            <div>Cantrips: {prepared_cantrips}/4</div>
+            <div>Levelled Spells: {prepared_spells}/14</div>
+          </div>
         </div>
         <div>
           {Object.entries(spell_levels).map(([spell_levels, level]) => {
@@ -78,6 +88,8 @@ export default function SpellList() {
                   props={level}
                   level={spell_levels}
                   toUpdatePrepared={updatePrepared}
+                  limit_cantrip={cantrip_limit_met}
+                  limit_spells={spell_limit_met}
                 />
               </div>
             );

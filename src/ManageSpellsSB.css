@@ -7,7 +7,7 @@
 }
 
 .manage-spells {
-  background-color: var(--light-background-color);
+  /* padding-bottom: 40px; */
   width: 350px;
 }
 .manage-spells-hidden {
@@ -55,9 +55,28 @@
   flex-shrink: 0;
 }
 
+.prepared-spells {
+  background-color: var(--light-background-color);
+  color: var(--primary-text-color);
+  font-family: var(--primary-font-family);
+  font-size: 12px;
+  text-align: left;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.prepared-spells-title {
+  font-size: 14px;
+  padding-left: 0px;
+}
+
 .level-group {
   font-family: var(--primary-font-family);
   z-index: 4;
+}
+
+.level-card {
+  padding-bottom: 10px;
 }
 
 .level-card-body {
@@ -79,6 +98,10 @@
   font-family: var(--primary-font-family);
   font-size: 14px;
   vertical-align: middle;
+}
+
+.spell-display:hover {
+  cursor: pointer;
 }
 
 .standard-sm-btn {
@@ -121,6 +144,11 @@
 .unprepare-btn {
   border: solid 1px var(--primary-text-color);
   color: var(--primary-text-color);
+}
+
+.disabled {
+  background-color: #9fa5aa;
+  color: var(--light-background-color);
 }
 
 .unprepare-btn:hover {

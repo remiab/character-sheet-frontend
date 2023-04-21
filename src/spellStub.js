@@ -24,6 +24,7 @@ export default function SpellStub(props) {
             status={props.status}
             toUpdatePrepared={props.toUpdatePrepared}
             level={props.level}
+            limitReached={props.limitReached}
           />
         </div>
       </div>
