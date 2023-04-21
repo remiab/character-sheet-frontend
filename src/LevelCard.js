@@ -16,6 +16,7 @@ export default function LevelCard(props) {
                 spell_name={spell_stats[0].spell_name}
                 level={spell_stats[0].level}
                 status={spell_stats[0].prepared}
+                toUpdatePrepared={props.toUpdatePrepared}
               />
             </div>
           );
