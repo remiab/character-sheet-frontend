@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaCopy } from "react-icons/fa";
 
 export default function SpellDescImg(props) {
   const [imageUrl, SetImageUrl] = useState({});

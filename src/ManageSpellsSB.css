@@ -3,9 +3,11 @@
   --primary-hover-color: #211a33;
   --primary-font-family: "Philosopher", sans-serif;
   --button-font-family: "Encode Sans", sans-serif;
+  --light-background-color: white;
 }
 
 .manage-spells {
+  background-color: var(--light-background-color);
   width: 350px;
 }
 .manage-spells-hidden {
@@ -27,20 +29,32 @@
   overflow: auto;
 }
 
+.spell-book-wrapper {
+  background-color: var(--light-background-color);
+}
+
 .close-spells {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0px;
+  z-index: 6;
 }
 .SpellBookTitle {
+  background-color: var(--light-background-color);
   color: var(--primary-text-color);
   font-family: var(--primary-font-family);
+  padding-top: 5px;
+  padding-bottom: 15px;
   margin-bottom: auto;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 .level-group {
   font-family: var(--primary-font-family);
+  z-index: 4;
 }
 
 .level-card-body {
@@ -94,11 +108,11 @@
 
 .prepare-btn {
   background-color: var(--primary-text-color);
-  color: white;
+  color: var(--light-background-color);
 }
 .prepare-btn:hover {
   background-color: var(--primary-hover-color);
-  color: white;
+  color: var(--light-background-color);
 }
 
 .unprepare-btn {
@@ -108,7 +122,7 @@
 
 .unprepare-btn:hover {
   background-color: var(--primary-text-color);
-  color: white;
+  color: var(--light-background-color);
 }
 
 .btn-container {
