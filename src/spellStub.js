@@ -19,7 +19,13 @@ export default function SpellStub(props) {
           </span>
         </div>
         <div className="col-sm-4 btn-container">
-          <PrepareBtn name={props.spell_name} status={props.status} />
+          <PrepareBtn
+            name={props.spell_name}
+            status={props.status}
+            toUpdatePrepared={props.toUpdatePrepared}
+            level={props.level}
+            limitReached={props.limitReached}
+          />
         </div>
       </div>
       <div
