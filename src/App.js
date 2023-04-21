@@ -1,5 +1,5 @@
 import "./App.css";
-import ManageSpellsSB from "./ManageSpellsSB";
+import ManageSpellsSB from "./components/ManageSpellsSideBar/ManageSpellsSB";
 
 function App() {
   return (
