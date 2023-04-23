@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 
 export default function PrepareBtn(props) {
+  const character_name = constList.character_name;
   const name = props.name.toLowerCase();
   const [prepared, setPrepared] = useState(props.status);
-  let apiUrl = `update/prepare/${name}`;
+  let apiUrl = `update/prepare/${character_name}/${name}`;
   let update_dict = {};
   update_dict["spell_name"] = name;
 
