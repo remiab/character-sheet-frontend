@@ -31,6 +31,7 @@ export default function SpellList() {
   }
 
   function handleResponse(response) {
+    console.log(response);
     setReady(true);
     let levels = [];
     let count_cantrips = 0;
