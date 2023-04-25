@@ -18,10 +18,10 @@
   z-index: 2;
 }
 
-.box-stats button {
+/* .box-stats button {
   color: red;
   font-size: 20px;
-}
+} */
 
 .score-row {
   width: 150px;
@@ -31,9 +31,21 @@
   top: 15px;
 }
 .score-row {
-  top: 27px;
+  top: 37px;
 }
 
 .modifier-box {
-  top: 67px;
+  top: 83px;
+}
+
+.roll-check {
+  font-size: 24px;
+}
+
+.adv-btn {
+  padding-right: 10px;
+}
+
+.dis-btn {
+  padding-left: 10px;
 }
