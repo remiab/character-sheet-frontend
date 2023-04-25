@@ -1,0 +1,39 @@
+:root {
+  --primary-text-color: #362a52;
+  --primary-hover-color: #211a33;
+  --primary-font-family: "Philosopher", sans-serif;
+  --button-font-family: "Encode Sans", sans-serif;
+  --light-background-color: white;
+}
+
+.Stat {
+  font-family: var(--primary-font-family);
+  width: 150px;
+}
+
+.box-stats {
+  background-color: rgba(0, 0, 0, 0);
+  color: red;
+  position: absolute;
+  z-index: 2;
+}
+
+.box-stats button {
+  color: red;
+  font-size: 20px;
+}
+
+.score-row {
+  width: 150px;
+}
+
+.stat-attr {
+  top: 15px;
+}
+.score-row {
+  top: 27px;
+}
+
+.modifier-box {
+  top: 67px;
+}
