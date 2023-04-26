@@ -1,5 +1,8 @@
 .App {
+  background-image: url("./ithen_character_sheet_bg.jpg");
+  height: 100%;
   text-align: center;
+  z-index: 0;
 }
 
 .App-logo {

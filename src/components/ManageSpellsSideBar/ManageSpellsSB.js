@@ -10,7 +10,7 @@ export default function ManageSpellsSB() {
   return (
     <div className="ManageSpellsSB">
       <button
-        className="btn standard-sm-btn"
+        className="btn standard-sm-btn manage-btn"
         type="button"
         target="#"
         onClick={showSidebar}

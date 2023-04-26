@@ -35,14 +35,16 @@ export default function BaseStatBlock() {
   if (ready) {
     return (
       <div className="StatBlock">
-        <div className="d-flex flex-direction-row justify-content-between px-5">
-          {Object.entries(stat_block).map(([stat, stat_dict]) => {
-            return (
-              <div key={stat}>
-                <Stat dict={stat_dict} />
-              </div>
-            );
-          })}
+        <div className="col-sm-12">
+          <div className="row">
+            {Object.entries(stat_block).map(([stat, stat_dict]) => {
+              return (
+                <div className="col-2" key={stat}>
+                  <Stat dict={stat_dict} />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

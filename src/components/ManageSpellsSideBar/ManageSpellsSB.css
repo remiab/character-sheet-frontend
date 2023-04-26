@@ -1,9 +1,19 @@
 :root {
   --primary-text-color: #362a52;
+  --primary-light-text-color: #b1cdbe;
   --primary-hover-color: #211a33;
   --primary-font-family: "Philosopher", sans-serif;
   --button-font-family: "Encode Sans", sans-serif;
   --light-background-color: white;
+}
+
+.manage-btn {
+  background-color: var(--primary-text-color);
+  color: var(--primary-light-text-color);
+}
+.manage-btn:hover {
+  background-color: var(--primary-hover-color);
+  color: var(--primary-light-text-color);
 }
 
 .manage-spells {
@@ -20,7 +30,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 10px;
+  /* padding: 10px; */
   position: fixed;
   top: 0;
   right: 0;
@@ -29,7 +39,7 @@
 }
 
 .spell-book-wrapper {
-  background-color: var(--light-background-color);
+  background-color: var(--primary-text-color);
 }
 
 .close-spells {
@@ -45,8 +55,8 @@
   z-index: 5;
 }
 .SpellBookTitle {
-  background-color: var(--light-background-color);
-  color: var(--primary-text-color);
+  background-color: var(--primary-text-color);
+  color: var(--primary-light-text-color);
   font-family: var(--primary-font-family);
   padding-top: 5px;
   padding-bottom: 15px;
@@ -55,8 +65,8 @@
 }
 
 .prepared-spells {
-  background-color: var(--light-background-color);
-  color: var(--primary-text-color);
+  background-color: var(--primary-text-color);
+  color: var(--primary-light-text-color);
   font-family: var(--primary-font-family);
   font-size: 12px;
   text-align: left;
@@ -83,6 +93,7 @@
 }
 
 .card-title {
+  color: var(--primary-light-text-color);
   padding-top: 10px;
 }
 
@@ -94,6 +105,7 @@
 }
 
 .spell-display {
+  color: var(--primary-light-text-color);
   font-family: var(--primary-font-family);
   font-size: 14px;
   vertical-align: middle;
@@ -130,10 +142,13 @@
   right: 10px;
   /* bottom: 0; */
 }
+.card {
+  background-color: var(--primary-text-color);
+}
 
 .prepare-btn {
-  background-color: var(--primary-text-color);
-  color: var(--light-background-color);
+  background-color: var(--primary-light-text-color);
+  color: var(--primary-text-color);
 }
 .prepare-btn:hover {
   background-color: var(--primary-hover-color);
@@ -141,8 +156,8 @@
 }
 
 .unprepare-btn {
-  border: solid 1px var(--primary-text-color);
-  color: var(--primary-text-color);
+  border: solid 1px var(--primary-light-text-color);
+  color: var(--primary-light-text-color);
 }
 
 .disabled {

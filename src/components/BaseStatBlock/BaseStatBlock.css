@@ -1,19 +1,24 @@
 :root {
   --primary-text-color: #362a52;
+  --primary-light-text-color: #b1cdbe;
   --primary-hover-color: #211a33;
   --primary-font-family: "Philosopher", sans-serif;
   --button-font-family: "Encode Sans", sans-serif;
   --light-background-color: white;
 }
 
+/* .StatBlock {
+  width: 700px;
+} */
+
 .Stat {
   font-family: var(--primary-font-family);
-  width: 150px;
+  width: 130px;
 }
 
 .box-stats {
   background-color: rgba(0, 0, 0, 0);
-  color: red;
+  color: var(--primary-light-text-color);
   position: absolute;
   z-index: 2;
 }
@@ -24,28 +29,29 @@
 } */
 
 .score-row {
+  top: 58px;
   width: 150px;
 }
 
 .stat-attr {
   top: 15px;
 }
-.score-row {
-  top: 37px;
-}
 
 .modifier-box {
-  top: 83px;
+  top: 107px;
 }
 
 .roll-check {
+  color: var(--primary-light-text-color);
   font-size: 24px;
 }
 
 .adv-btn {
+  color: var(--primary-light-text-color);
   padding-right: 10px;
 }
 
 .dis-btn {
+  color: var(--primary-light-text-color);
   padding-left: 10px;
 }
