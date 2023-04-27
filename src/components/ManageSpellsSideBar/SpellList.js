@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import LevelCard from "./LevelCard";
+import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 
 export default function SpellList() {
+  const character_name = constList.character_name;
   const [ready, setReady] = useState(false);
   const [spell_levels, setSpellLevels] = useState([]);
   const [prepared_cantrips, setCountCantrips] = useState(0);
@@ -98,7 +100,7 @@ export default function SpellList() {
       </div>
     );
   } else {
-    let apiUrl = "/spell_list";
+    let apiUrl = `/${character_name}/spell_list`;
     axios
       .get(apiUrl)
       .then(handleResponse)
