@@ -1,0 +1,36 @@
+:root {
+  --primary-text-color: #362a52;
+  --primary-light-text-color: #b1cdbe;
+  --primary-hover-color: #211a33;
+  --primary-font-family: "Philosopher", sans-serif;
+  --button-font-family: "Encode Sans", sans-serif;
+}
+
+.standard-sm-btn {
+  box-shadow: 1px 1px rgb(0 0 0 / 25%);
+  font-family: var(--button-font-family);
+  font-size: 7px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 2px;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.heal-dmg-btn {
+  border: solid 1px var(--primary-light-text-color);
+  color: var(--primary-light-text-color);
+  width: 100%;
+}
+
+.heal-dmg-btn:hover {
+  color: #9db7a9;
+}
+
+input {
+  background-color: var(--primary-hover-color);
+  border: solid 1px var(--primary-light-text-color);
+  border-radius: 4px;
+  color: var(--primary-light-text-color);
+  width: 100%;
+}
