@@ -33,9 +33,12 @@ export default function TempHP() {
 
     updateTempHP["thp"] = to_add;
     updateTempHP["date_occurred"] = occurred;
-    updateTempHP["character"] = character;
     updateTempHP["event"] = "test";
+
+    let putApiUrl = `/${character}/hit_points/temp_hp/update`;
+    axios.put(putApiUrl, updateTempHP).catch((err) => console.log(err));
     setDisplay(true);
+    setTHP({ ready: false });
   }
 
   function handleResponse(response) {
