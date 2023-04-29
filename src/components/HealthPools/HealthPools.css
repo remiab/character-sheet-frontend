@@ -1,6 +1,7 @@
 :root {
   --primary-text-color: #362a52;
   --primary-light-text-color: #b1cdbe;
+  --light-text-fade: #b1cdbe90;
   --primary-hover-color: #211a33;
   --primary-font-family: "Philosopher", sans-serif;
   --button-font-family: "Encode Sans", sans-serif;
@@ -9,6 +10,7 @@
 
 .HealthPools {
   background-color: var(--primary-background-dark);
+  border-radius: 10px;
   color: var(--primary-light-text-color);
 }
 
@@ -33,6 +35,12 @@
   color: #9db7a9;
 }
 
+.tempHPdisp-btn {
+  align-items: center;
+  height: 30px;
+  padding: 0px;
+}
+
 input {
   background-color: var(--primary-hover-color);
   border: solid 1px var(--primary-light-text-color);
@@ -41,10 +49,27 @@ input {
   width: 100%;
 }
 
+.hp-label {
+  color: var(--light-text-fade);
+  font-family: var(--primary-font-family);
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .current-hp-row {
   align-items: center;
   font-size: 30px;
   flex-wrap: nowrap;
   padding: 0px;
   width: 110px;
+}
+
+.CurrentHP {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.TempHP {
+  font-weight: bold;
+  font-size: 18px;
 }

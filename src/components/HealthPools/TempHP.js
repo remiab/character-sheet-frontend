@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
+import "./HealthPools.css";
 
 export default function TempHP() {
   const character = constList.character_name;
@@ -24,11 +25,16 @@ export default function TempHP() {
 
   function addTempHP(event) {
     event.preventDefault();
+    let updateTempHP = {};
     let to_add = document.querySelector("#tempHPSubmit");
     to_add = to_add.value;
-    console.log(to_add);
     let occurred = new Date();
     occurred = formatDate(occurred);
+
+    updateTempHP["thp"] = to_add;
+    updateTempHP["date_occurred"] = occurred;
+    updateTempHP["character"] = character;
+    updateTempHP["event"] = "test";
     setDisplay(true);
   }
 
@@ -39,18 +45,28 @@ export default function TempHP() {
     });
   }
   if (tHP.ready) {
-    console.log(display);
     if (display) {
       return (
-        <button className="TempHP" onClick={switchToInput}>
-          {tHP.temp_hp}
-        </button>
+        <div className="TempHPGroup">
+          <div className="hp-label">TEMP</div>
+          <button
+            className="TempHP tempHPdisp-btn heal-dmg-btn btn col-12"
+            onClick={switchToInput}
+          >
+            {tHP.temp_hp}
+          </button>
+          <div className="hp-label">HP</div>
+        </div>
       );
     } else {
       return (
-        <form onSubmit={addTempHP}>
-          <input type="number" id="tempHPSubmit"></input>
-        </form>
+        <div className="TempHPGroup">
+          <div className="hp-label">TEMP</div>
+          <form className="pt-2" onSubmit={addTempHP}>
+            <input type="number" id="tempHPSubmit"></input>
+          </form>
+          <div className="hp-label">HP</div>
+        </div>
       );
     }
   } else {

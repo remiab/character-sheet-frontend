@@ -1,5 +1,5 @@
 import React from "react";
-import "./DamageInputGroup.css";
+import "./HealthPools.css";
 
 export default function DamangeInputGroup() {
   return (

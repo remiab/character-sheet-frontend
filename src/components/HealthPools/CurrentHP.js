@@ -17,8 +17,12 @@ export default function CurrentHP(props) {
 
   if (chp["ready"]) {
     return (
-      <div className="CurrentHP col-12 px-0">
-        {chp["current"]} / {chp["max"]}
+      <div>
+        <div className="hp-label">CURRENT</div>
+        <div className="CurrentHP col-12 px-0">
+          {chp["current"]} / {chp["max"]}
+        </div>
+        <div className="hp-label">HIT POINTS</div>
       </div>
     );
   } else {
