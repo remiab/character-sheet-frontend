@@ -8,13 +8,28 @@ export default function TempHP() {
   const [tHP, setTHP] = useState({
     ready: false,
   });
+
   function switchToInput(event) {
+    event.preventDefault();
     setDisplay(false);
   }
 
-  function addTempHP() {
+  function formatDate(date) {
+    let return_date = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+    let return_time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    return `${return_date} ${return_time}`;
+  }
+
+  function addTempHP(event) {
+    event.preventDefault();
+    let to_add = document.querySelector("#tempHPSubmit");
+    to_add = to_add.value;
+    console.log(to_add);
+    let occurred = new Date();
+    occurred = formatDate(occurred);
     setDisplay(true);
-    console.log("tried to submit");
   }
 
   function handleResponse(response) {
@@ -32,7 +47,11 @@ export default function TempHP() {
         </button>
       );
     } else {
-      return <input type="number" onSubmit={addTempHP}></input>;
+      return (
+        <form onSubmit={addTempHP}>
+          <input type="number" id="tempHPSubmit"></input>
+        </form>
+      );
     }
   } else {
     let getApiUrl = `${character}/hit_points/temp_hp`;
