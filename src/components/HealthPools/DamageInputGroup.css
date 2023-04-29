@@ -4,6 +4,12 @@
   --primary-hover-color: #211a33;
   --primary-font-family: "Philosopher", sans-serif;
   --button-font-family: "Encode Sans", sans-serif;
+  --primary-background-dark: #211a3387;
+}
+
+.HealthPools {
+  background-color: var(--primary-background-dark);
+  color: var(--primary-light-text-color);
 }
 
 .standard-sm-btn {
@@ -33,4 +39,12 @@ input {
   border-radius: 4px;
   color: var(--primary-light-text-color);
   width: 100%;
+}
+
+.current-hp-row {
+  align-items: center;
+  font-size: 30px;
+  flex-wrap: nowrap;
+  padding: 0px;
+  width: 110px;
 }
