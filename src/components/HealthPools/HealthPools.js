@@ -14,16 +14,19 @@ export default function HealthPools() {
   const [maxPools, setMaxPools] = useState({});
   const [ready, setReady] = useState(false);
   const [damage, setDamage] = useState({});
-  const DamagePools = {};
+  var DamagePools = {};
 
   function manageHealing(key) {
-    let new_total = parseInt(healthPools[key]);
+    let current_hp = parseInt(healthPools[key]);
     let max = parseInt(maxPools[key]);
     let dmg = damage["damage"];
-    while (new_total < max && dmg > 0) {
-      dmg -= 1;
-      new_total += 1;
+    console.log(dmg);
+    if (dmg <= max) {
+      DamagePools[key] = dmg;
+    } else {
+      DamagePools[key] = max - current_hp;
     }
+    sendDamageUpdate();
   }
 
   async function sendDamageUpdate() {
@@ -33,8 +36,11 @@ export default function HealthPools() {
     update["dmg_occurred"] = damage["dmg_occurred"];
     update["event"] = damage["event"];
 
+    console.log(update);
     let putApiUrl = `/${character}/hit_points/update`;
     await axios.put(putApiUrl, update).catch((err) => console.log(err));
+
+    DamagePools = {};
     setDamage({});
     setReady(false);
   }
@@ -66,7 +72,6 @@ export default function HealthPools() {
         HealthPools[damagePoolKeys[i]] = new_total;
       }
     }
-    console.log(DamagePools);
     sendDamageUpdate();
   }
 
@@ -75,7 +80,6 @@ export default function HealthPools() {
       manageHealing("hp");
     } else {
       manageDamage();
-      console.log(HealthPools);
     }
   }
 
@@ -93,7 +97,6 @@ export default function HealthPools() {
   }
 
   function handleResponse(response) {
-    console.log(response.data);
     HealthPools["hp"] = response.data.current_hp[0].current_hp;
     MaxPools["hp"] = response.data.current_hp[0].max_hp;
     HealthPools["temp_hp"] = response.data.temp_hp[0].current_thp;
