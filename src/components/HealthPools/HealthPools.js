@@ -2,6 +2,7 @@ import React from "react";
 import DamangeInput from "./DamageInputGroup";
 import CurrentHP from "./CurrentHP";
 import TempHP from "./TempHP";
+import ArcaneWard from "./ArcaneWard";
 
 export default function HealthPools() {
   const HealthPools = {};
@@ -21,7 +22,7 @@ export default function HealthPools() {
         <TempHP recordCurrent={allocateHealthPools} />
       </div>
       <div className="col-md-3">
-        <h3>ward</h3>
+        <ArcaneWard />
       </div>
     </div>
   );
