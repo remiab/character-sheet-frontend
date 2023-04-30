@@ -7,9 +7,8 @@ import { formatDate } from "../functions";
 export default function TempHP(props) {
   const character = constList.character_name;
   const [display, setDisplay] = useState(true);
-  const [tHP, setTHP] = useState({
-    ready: props.ready,
-  });
+  const [ready, setReady] = useState(props.ready);
+  const [thp, setTHP] = useState(props.current);
 
   function switchToInput(event) {
     event.preventDefault();
@@ -30,19 +29,16 @@ export default function TempHP(props) {
 
     let putApiUrl = `/${character}/hit_points/temp_hp/update`;
     await axios.put(putApiUrl, updateTempHP).catch((err) => console.log(err));
+    setReady(false);
     setDisplay(true);
-    setTHP({ ready: false });
   }
 
   function handleResponse(response) {
-    setTHP({
-      ready: true,
-      temp_hp: response.data.current_thp,
-    });
-    props.recordCurrent("temp", response.data.current_thp);
+    setReady(true);
+    setTHP(response.data.current_thp);
   }
 
-  if (tHP.ready) {
+  if (ready) {
     if (display) {
       return (
         <div className="TempHPGroup">
@@ -51,7 +47,7 @@ export default function TempHP(props) {
             className="TempHP tempHPdisp-btn heal-dmg-btn btn col-12"
             onClick={switchToInput}
           >
-            {tHP.temp_hp}
+            {thp}
           </button>
           <div className="hp-label">HP</div>
         </div>

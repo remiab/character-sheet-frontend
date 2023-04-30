@@ -19,6 +19,7 @@ export default function DamageInputGroup(props) {
     if (trigger_btn === "heal-btn") {
       props.recordDamage(damage_taken, "heal", "test", occurred);
     } else {
+      damage_taken = damage_taken * -1;
       props.recordDamage(damage_taken, "damage", "test", occurred);
     }
     damage_select.value = "";

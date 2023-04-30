@@ -13,7 +13,6 @@ export default function BaseStatBlock() {
 
   function handleStatResponse(response) {
     setReady(true);
-    // setStatBlock(response.data);
     setStatBlock({
       STR: response.data[0],
       DEX: response.data[1],
