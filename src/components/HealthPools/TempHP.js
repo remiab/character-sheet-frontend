@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 import "./HealthPools.css";
+import { formatDate } from "../functions";
 
-export default function TempHP() {
+export default function TempHP(props) {
   const character = constList.character_name;
   const [display, setDisplay] = useState(true);
   const [tHP, setTHP] = useState({
-    ready: false,
+    ready: props.ready,
   });
 
   function switchToInput(event) {
@@ -15,15 +16,7 @@ export default function TempHP() {
     setDisplay(false);
   }
 
-  function formatDate(date) {
-    let return_date = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
-    let return_time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-    return `${return_date} ${return_time}`;
-  }
-
-  function addTempHP(event) {
+  async function addTempHP(event) {
     event.preventDefault();
     let updateTempHP = {};
     let to_add = document.querySelector("#tempHPSubmit");
@@ -36,7 +29,7 @@ export default function TempHP() {
     updateTempHP["event"] = "test";
 
     let putApiUrl = `/${character}/hit_points/temp_hp/update`;
-    axios.put(putApiUrl, updateTempHP).catch((err) => console.log(err));
+    await axios.put(putApiUrl, updateTempHP).catch((err) => console.log(err));
     setDisplay(true);
     setTHP({ ready: false });
   }
@@ -46,7 +39,9 @@ export default function TempHP() {
       ready: true,
       temp_hp: response.data.current_thp,
     });
+    props.recordCurrent("temp", response.data.current_thp);
   }
+
   if (tHP.ready) {
     if (display) {
       return (

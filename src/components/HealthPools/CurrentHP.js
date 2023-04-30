@@ -4,7 +4,7 @@ import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/ch
 
 export default function CurrentHP(props) {
   const character = constList.character_name;
-  const [chp, setCHP] = useState({ ready: false });
+  const [chp, setCHP] = useState({ ready: props.ready });
 
   function handleResponse(response) {
     setCHP({
@@ -13,6 +13,7 @@ export default function CurrentHP(props) {
       max: response.data.max_hp,
     });
     props.recordCurrent("current", response.data.current_hp);
+    props.recordMax("current", response.data.max_hp);
   }
 
   if (chp["ready"]) {
