@@ -1,5 +1,5 @@
 import React from "react";
-import CombatSpellStub from "./CombatSpellStub";
+import CombatStub from "./CombatStub";
 
 export default function CastTimeCard(props) {
   let times_full = {
@@ -17,7 +17,7 @@ export default function CastTimeCard(props) {
         {Object.entries(props.grouped_spells[1]).map((spell_name) => {
           return (
             <div key={spell_name}>
-              <CombatSpellStub spells={spell_name} />
+              <CombatStub spells={spell_name} type="spell" />
             </div>
           );
         })}

@@ -32,7 +32,7 @@ export default function CombatPullUp() {
   if (ready) {
     // console.log(castDict);
     return (
-      <div className="CombatPullUp row d-flex">
+      <div className="CombatPullUp row d-flex py-3">
         {Object.entries(castDict).map((grouped_spells) => {
           return (
             <div className="col-4" key={grouped_spells}>

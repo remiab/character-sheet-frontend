@@ -87,8 +87,8 @@ export default function SpellList() {
             return (
               <div key={spell_levels}>
                 <LevelCard
-                  props={level}
                   level={spell_levels}
+                  props={level}
                   toUpdatePrepared={updatePrepared}
                   limit_cantrip={cantrip_limit_met}
                   limit_spells={spell_limit_met}
