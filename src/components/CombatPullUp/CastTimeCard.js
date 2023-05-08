@@ -8,8 +8,7 @@ export default function CastTimeCard(props) {
     Rn: "Reaction",
   };
   let time = times_full[props.grouped_spells[0]];
-  console.log(props.grouped_spells[0]);
-  console.log(props.grouped_spells[1]);
+
   return (
     <div className="CastTimeCard">
       <h4 className="card-title cast-time-group">{time}</h4>
