@@ -2,6 +2,7 @@ import "./App.css";
 import ManageSpellsSB from "./components/ManageSpellsSideBar/ManageSpellsSB";
 import BaseStatBlock from "./components/BaseStatBlock/BaseStatBlock";
 import HealthPools from "./components/HealthPools/HealthPools";
+import CombatPullUp from "./components/CombatPullUp/CombatPullUp";
 export const character_name = "ithen";
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
           <div className="col-md-5 px-5">
             <HealthPools />
           </div>
+        </div>
+        <div className="row">
+          <CombatPullUp />
         </div>
       </div>
     </div>
