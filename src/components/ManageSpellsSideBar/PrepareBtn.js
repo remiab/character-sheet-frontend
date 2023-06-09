@@ -6,7 +6,7 @@ export default function PrepareBtn(props) {
   const character_name = constList.character_name;
   const name = props.name.toLowerCase();
   const [prepared, setPrepared] = useState(props.status);
-  let apiUrl = `${character_name}/${name}/spell_list/prepare`;
+  let apiUrl = `${character_name}/spell_list/${name}/prepare`;
   let update_dict = {};
   update_dict["spell_name"] = name;
 

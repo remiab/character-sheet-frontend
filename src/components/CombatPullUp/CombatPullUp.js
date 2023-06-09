@@ -17,12 +17,16 @@ export default function CombatPullUp() {
     console.log(response.data);
     let times = ["A", "BA", "Rn"];
     for (let i = 0; i < response.data.length; i++) {
-      if (times.includes(response.data[i].casting_unit)) {
-        cast_time_dict[response.data[i].casting_unit][
-          response.data[i].spell_name
-        ] = response.data[i];
+      if (response.data[i].level === 0) {
+        cast_time_dict["BA"][response.data[i].spell_name] = response.data[i];
       } else {
-        //pass
+        if (times.includes(response.data[i].casting_unit)) {
+          cast_time_dict[response.data[i].casting_unit][
+            response.data[i].spell_name
+          ] = response.data[i];
+        } else {
+          //pass
+        }
       }
     }
     setCastDict(cast_time_dict);
@@ -33,13 +37,21 @@ export default function CombatPullUp() {
     // console.log(castDict);
     return (
       <div className="CombatPullUp row d-flex py-3">
-        {Object.entries(castDict).map((grouped_spells) => {
-          return (
-            <div className="col-4" key={grouped_spells}>
-              <CastTimeCard grouped_spells={grouped_spells} />
-            </div>
-          );
-        })}
+        <div className="col-6">
+          <CastTimeCard key={"An"} spells={castDict["A"]} cast_time="Action" />
+        </div>
+        <div className="col-6">
+          <CastTimeCard
+            key={"BA"}
+            spells={castDict["BA"]}
+            cast_time="Bonus Action"
+          />
+          <CastTimeCard
+            key={"Rn"}
+            spells={castDict["Rn"]}
+            cast_time="Reaction"
+          />
+        </div>
       </div>
     );
   } else {

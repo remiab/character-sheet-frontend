@@ -13,8 +13,8 @@ export default function SpellList() {
   const [cantrip_limit_met, setCantripLimitTrigger] = useState(false);
   const [spell_limit_met, setSpellLimitTrigger] = useState(false);
 
-  let cantrip_limit = 4;
-  let spell_limit = 14;
+  let cantrip_limit = 5;
+  let spell_limit = 15;
 
   function updatePrepared(cnt, lvl) {
     if (lvl === 0) {
@@ -78,8 +78,12 @@ export default function SpellList() {
           <h2 className="SpellBookTitle">Spell Book</h2>
           <div className="prepared-spells">
             <div className="prepared-spells-title">Prepared spells:</div>
-            <div>Cantrips: {prepared_cantrips}/4</div>
-            <div>Levelled Spells: {prepared_spells}/14</div>
+            <div>
+              Cantrips: {prepared_cantrips}/{cantrip_limit}
+            </div>
+            <div>
+              Levelled Spells: {prepared_spells}/{spell_limit}
+            </div>
           </div>
         </div>
         <div>
