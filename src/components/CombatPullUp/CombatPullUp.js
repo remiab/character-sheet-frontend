@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 import CastTimeCard from "./CastTimeCard";
+import HealthPools from "../HealthPools/HealthPools";
 
 export default function CombatPullUp(props) {
   const character = constList.character_name;
@@ -34,21 +35,31 @@ export default function CombatPullUp(props) {
 
   if (ready) {
     return (
-      <div className="CombatPullUp row d-flex py-3">
-        <div className="col-6">
-          <CastTimeCard key={"An"} spells={castDict["A"]} cast_time="Action" />
+      <div className="CombatPullUp">
+        <div className=" row d-flex py-3">
+          <div className="col-6"></div>
+          <div className="col-6"></div>
         </div>
-        <div className="col-6">
-          <CastTimeCard
-            key={"BA"}
-            spells={castDict["BA"]}
-            cast_time="Bonus Action"
-          />
-          <CastTimeCard
-            key={"Rn"}
-            spells={castDict["Rn"]}
-            cast_time="Reaction"
-          />
+        <div className=" row d-flex py-3">
+          <div className="col-6">
+            <CastTimeCard
+              key={"An"}
+              spells={castDict["A"]}
+              cast_time="Action"
+            />
+          </div>
+          <div className="col-6">
+            <CastTimeCard
+              key={"BA"}
+              spells={castDict["BA"]}
+              cast_time="Bonus Action"
+            />
+            <CastTimeCard
+              key={"Rn"}
+              spells={castDict["Rn"]}
+              cast_time="Reaction"
+            />
+          </div>
         </div>
       </div>
     );

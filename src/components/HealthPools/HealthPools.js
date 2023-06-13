@@ -132,9 +132,9 @@ export default function HealthPools(props) {
     if (abj_trigger) {
       let ward_replen = abj_trigger;
       setAbjTrigger(null);
-      recordDamage(ward_replen, "aw", "test");
+      recordDamage(ward_replen, "aw", "demo");
     }
-  }, [abj_trigger]);
+  });
 
   if (ready) {
     return (

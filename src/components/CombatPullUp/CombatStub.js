@@ -3,10 +3,9 @@ import "./CombatPullUp.css";
 import CastLevelBtn from "./CastLevelBtn";
 
 export default function CombatStub(props) {
-  // console.log(props);
   let max_level = 5;
 
-  let type = props.type;
+  let type = props.type; // will want this when have actions like unsettling presence etc
   let spell_dict = props.spells[1];
 
   if ((type = "spell")) {
