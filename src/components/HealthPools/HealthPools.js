@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import DamangeInput from "./DamageInputGroup";
 import CurrentHP from "./CurrentHP";
 import TempHP from "./TempHP";
 import ArcaneWard from "./ArcaneWard";
+import { CastAbjContext } from "../../Contexts/CastAbjContext";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
+import { stampTime } from "../functions";
 import axios from "axios";
 
-export default function HealthPools() {
+export default function HealthPools(props) {
   const character = constList.character_name;
   const HealthPools = {};
   const [healthPools, setHealthPools] = useState({});
@@ -14,14 +16,17 @@ export default function HealthPools() {
   const [maxPools, setMaxPools] = useState({});
   const [ready, setReady] = useState(false);
   const [damage, setDamage] = useState({});
+  const { abj_trigger } = useContext(CastAbjContext);
+  const { setAbjTrigger } = useContext(CastAbjContext);
   var DamagePools = {};
+
+  console.log(abj_trigger);
 
   function manageHealing(key) {
     let current_hp = parseInt(healthPools[key]);
     let max = parseInt(maxPools[key]);
     let dmg = damage["damage"];
-    console.log(dmg);
-    if (dmg <= max) {
+    if (dmg + current_hp <= max) {
       DamagePools[key] = dmg;
     } else {
       DamagePools[key] = max - current_hp;
@@ -77,18 +82,23 @@ export default function HealthPools() {
 
   function allocateDamage() {
     if (damage["damage"] > 0) {
-      manageHealing("hp");
+      if (damage["type"] === "aw") {
+        manageHealing("arcane_ward");
+        setAbjTrigger(null);
+      } else {
+        manageHealing("hp");
+      }
     } else {
       manageDamage();
     }
   }
 
-  function recordDamage(amount, type, trigger, date) {
+  function recordDamage(amount, type, trigger) {
     setDamage({
       damage: amount,
       type: type,
       event: trigger,
-      dmg_occurred: date,
+      dmg_occurred: stampTime(),
     });
   }
 
@@ -98,12 +108,15 @@ export default function HealthPools() {
 
   function handleResponse(response) {
     HealthPools["hp"] = response.data.current_hp[0].current_hp;
-    MaxPools["hp"] = response.data.current_hp[0].max_hp;
     HealthPools["temp_hp"] = response.data.temp_hp[0].current_thp;
     HealthPools["arcane_ward"] = response.data.arcane_ward[0].current_well;
+
+    MaxPools["hp"] = response.data.current_hp[0].max_hp;
     MaxPools["arcane_ward"] = response.data.arcane_ward[0].max_points;
+
     setHealthPools(HealthPools);
     setMaxPools(MaxPools);
+
     setReady(true);
   }
 
@@ -114,6 +127,14 @@ export default function HealthPools() {
       .then(handleResponse)
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => {
+    if (abj_trigger) {
+      let ward_replen = abj_trigger;
+      setAbjTrigger(null);
+      recordDamage(ward_replen, "aw", "test");
+    }
+  }, [abj_trigger]);
 
   if (ready) {
     return (

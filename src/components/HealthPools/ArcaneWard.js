@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
-import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
+import React from "react";
+// import axios from "axios";
+// import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 
 export default function ArcaneWard(props) {
-  const character = constList.character_name;
+  // const character = constList.character_name;
   //   const [aw, setAW] = useState({ ready: props.ready });
 
   //   function handleResponse(response) {

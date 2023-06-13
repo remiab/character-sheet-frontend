@@ -5,3 +5,8 @@ export function formatDate(date) {
   let return_time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   return `${return_date} ${return_time}`;
 }
+
+export function stampTime() {
+  let occurred = new Date();
+  return formatDate(occurred);
+}

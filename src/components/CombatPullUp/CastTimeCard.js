@@ -3,7 +3,7 @@ import CombatStub from "./CombatStub";
 
 export default function CastTimeCard(props) {
   let time = props.cast_time;
-  console.log(props);
+  // console.log(props);
   return (
     <div className="CastTimeCard">
       <h4 className="card-title cast-time-group">{time}</h4>

@@ -3,7 +3,7 @@ import axios from "axios";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 import CastTimeCard from "./CastTimeCard";
 
-export default function CombatPullUp() {
+export default function CombatPullUp(props) {
   const character = constList.character_name;
   const [ready, setReady] = useState(false);
   const [castDict, setCastDict] = useState({});
@@ -14,7 +14,6 @@ export default function CombatPullUp() {
   };
 
   function handleResponse(response) {
-    console.log(response.data);
     let times = ["A", "BA", "Rn"];
     for (let i = 0; i < response.data.length; i++) {
       if (response.data[i].level === 0) {
@@ -34,7 +33,6 @@ export default function CombatPullUp() {
   }
 
   if (ready) {
-    // console.log(castDict);
     return (
       <div className="CombatPullUp row d-flex py-3">
         <div className="col-6">

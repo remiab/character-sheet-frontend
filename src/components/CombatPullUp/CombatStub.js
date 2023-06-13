@@ -3,7 +3,7 @@ import "./CombatPullUp.css";
 import CastLevelBtn from "./CastLevelBtn";
 
 export default function CombatStub(props) {
-  // console.log(props.spells);
+  // console.log(props);
   let max_level = 5;
 
   let type = props.type;
@@ -36,7 +36,11 @@ export default function CombatStub(props) {
           <div className="cast-levels row py-1 d-flex justify-content-end">
             {slots.map((slot) => {
               return (
-                <CastLevelBtn key={`${props.spells[0]}_${slot}`} level={slot} />
+                <CastLevelBtn
+                  key={`${props.spells[0]}_${slot}`}
+                  level={slot}
+                  school={props.spells[1].school}
+                />
               );
             })}
           </div>
