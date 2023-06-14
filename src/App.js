@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import ManageSpellsSB from "./components/ManageSpellsSideBar/ManageSpellsSB";
 import BaseStatBlock from "./components/BaseStatBlock/BaseStatBlock";
-import HealthPools from "./components/HealthPools/HealthPools";
 import CombatPullUp from "./components/CombatPullUp/CombatPullUp";
-import { CastAbjContext } from "./Contexts/CastAbjContext";
+
 export const character_name = "ithen";
+export const character_class = "wizard";
+export const character_level = 10;
 
 function App() {
-  const [abj_trigger, setAbjTrigger] = useState(null);
-
   return (
     <div className="App">
       <div className="container">
@@ -27,16 +26,10 @@ function App() {
         </div>
         <div className="row d-flex py-3">
           <div className="col-md-7 d-flex"></div>
-          <div className="col-md-5 px-5">
-            <CastAbjContext.Provider value={{ abj_trigger, setAbjTrigger }}>
-              <HealthPools abjTrig={abj_trigger} />
-            </CastAbjContext.Provider>
-          </div>
+          <div className="col-md-5 px-5"></div>
         </div>
         <div className="row">
-          <CastAbjContext.Provider value={setAbjTrigger}>
-            <CombatPullUp />
-          </CastAbjContext.Provider>
+          <CombatPullUp />
         </div>
       </div>
     </div>

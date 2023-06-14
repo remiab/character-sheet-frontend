@@ -8,7 +8,7 @@ import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/ch
 import { stampTime } from "../functions";
 import axios from "axios";
 
-export default function HealthPools(props) {
+export default function HealthPools() {
   const character = constList.character_name;
   const HealthPools = {};
   const [healthPools, setHealthPools] = useState({});
@@ -41,7 +41,7 @@ export default function HealthPools(props) {
     update["dmg_occurred"] = damage["dmg_occurred"];
     update["event"] = damage["event"];
 
-    console.log(update);
+    // console.log(update);
     let putApiUrl = `/${character}/hit_points/update`;
     await axios.put(putApiUrl, update).catch((err) => console.log(err));
 
