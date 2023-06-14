@@ -4,6 +4,7 @@ import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/ch
 import CastTimeCard from "./CastTimeCard";
 import HealthPools from "../HealthPools/HealthPools";
 import { CastAbjContext } from "../../Contexts/CastAbjContext";
+import Expendables from "./Expendables/Expendables";
 
 export default function CombatPullUp() {
   const character = constList.character_name;
@@ -39,7 +40,9 @@ export default function CombatPullUp() {
     return (
       <div className="CombatPullUp">
         <div className=" row d-flex py-3">
-          <div className="col-7"></div>
+          <div className="col-7">
+            <Expendables />
+          </div>
           <div className="col-5">
             <CastAbjContext.Provider value={{ abj_trigger, setAbjTrigger }}>
               <HealthPools />
