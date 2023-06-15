@@ -1,0 +1,11 @@
+.expendable-slot {
+  height: 20px;
+  width: 20px;
+}
+
+.available {
+  background-color: green !important;
+}
+.expended {
+  background-color: red !important;
+}

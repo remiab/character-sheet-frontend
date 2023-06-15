@@ -20,8 +20,6 @@ export default function HealthPools() {
   const { setAbjTrigger } = useContext(CastAbjContext);
   var DamagePools = {};
 
-  console.log(abj_trigger);
-
   function manageHealing(key) {
     let current_hp = parseInt(healthPools[key]);
     let max = parseInt(maxPools[key]);

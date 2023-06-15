@@ -1,0 +1,14 @@
+:root {
+  --primary-text-color: #362a52;
+  --primary-light-text-color: #b1cdbe;
+  --light-text-fade: #b1cdbe90;
+  --primary-hover-color: #211a33;
+  --primary-font-family: "Philosopher", sans-serif;
+  --button-font-family: "Encode Sans", sans-serif;
+  --primary-background-dark: #211a3387;
+}
+
+.level-disp {
+  color: var(--primary-light-text-color);
+  font-family: var(--primary-font-family);
+}
