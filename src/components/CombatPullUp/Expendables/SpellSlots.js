@@ -3,7 +3,7 @@ import SpellSlotGroup from "./SpellSlotGroup";
 
 export default function SpellSlots(props) {
   const [higher_level, setHigherLevel] = useState(false);
-  console.log(Object.keys(props.levels));
+
   let first_group = {};
   let second_group = {};
   if (Object.keys(props.levels).length > 5) {

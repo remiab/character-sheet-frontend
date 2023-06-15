@@ -10,8 +10,6 @@ export default function Expendables() {
   const character = const_list.character_name;
 
   function processExpendables(response) {
-    console.log(response.status_code);
-    console.log(response.data);
     let data = response.data;
 
     try {
@@ -23,9 +21,6 @@ export default function Expendables() {
       //pass
     }
 
-    // for (const [key, value] of Object.entries(data)) {
-    //   console.log(key);
-    // }
     setReady(true);
   }
 

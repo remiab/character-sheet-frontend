@@ -3,7 +3,6 @@ import SpellSlotRow from "./SpellSlotRow";
 
 export default function SpellSlotGroup(props) {
   let group = props.group;
-  console.log(group);
   return (
     <div className="SpellSlotGroup">
       {Object.entries(group).map(([slot_group, slots]) => {

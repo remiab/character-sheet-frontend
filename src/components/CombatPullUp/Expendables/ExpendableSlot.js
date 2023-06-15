@@ -13,6 +13,7 @@ export default function ExpendableSlot(props) {
   }
 
   function resetSlot(response) {
+    props.updateBool(props.id, !expended);
     setReady(false);
   }
 
