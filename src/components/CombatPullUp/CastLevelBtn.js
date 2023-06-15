@@ -9,7 +9,6 @@ export default function CastLevelBtn(props) {
     event.preventDefault();
     if (props.school === "abjuration") {
       setAbjTrigger(props.level * 2);
-      console.log("abj found");
     } else {
       //pass
     }

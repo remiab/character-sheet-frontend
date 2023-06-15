@@ -1,81 +1,70 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ExpendableSlot from "./ExpendableSlot";
 import "./SpellSlotRow.css";
+import axios from "axios";
 
 export default function SpellSlotRow(props) {
-  // const [ready, setReady] = useState(false);
   const [all_expended, setAllExpended] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [slots, setSlots] = useState({});
+  const expendedAPIUrl = "http://127.0.0.1:5000/expendables/";
 
-  let bool_dict = { 0: false, 1: true };
-  let bool_arr = [];
+  let slots_dict = {};
   let id_arr = [];
 
-  function checkIfAllExpended() {
-    let true_arr = bool_arr.filter(Boolean);
+  function updateBool() {
+    setReady(false);
+  }
 
-    if (bool_arr.toString() === true_arr.toString()) {
+  function processExpendedStatus(response) {
+    for (let i = 0; i < response.data.length; i++) {
+      slots_dict[response.data[i].expend_id] = response.data[i].expended;
+    }
+    let count = 0;
+    for (let [key] of Object.entries(slots_dict)) {
+      count += slots_dict[key];
+    }
+    if (count === id_arr.length) {
       setAllExpended(true);
     } else {
       setAllExpended(false);
     }
+    setSlots(slots_dict);
+    setReady(true);
   }
 
-  function updateBool(id, val) {
-    console.log(val);
-    let idx = id_arr.indexOf(id);
-    // console.log(idx);
-    bool_arr[idx] = val;
-    console.log(1, bool_arr);
-    checkIfAllExpended();
+  for (let i = 0; i < props.slots.length; i++) {
+    id_arr.push(props.slots[i].expend_id);
   }
+  let expend_ids = id_arr.toString();
 
-  // let sum = 0;
-  // for (let e of bool_arr) {
-  //   sum += e;
-  // }
-  // if (id_arr.length === sum) {
-  //   setAllExpended(true);
-  // }
-
-  useEffect(() => {
-    for (let i = 0; i < props.slots.length; i++) {
-      id_arr.push(props.slots[i].expend_id);
-      bool_arr.push(bool_dict[props.slots[i].expended]);
-    }
-    checkIfAllExpended();
-  });
-
-  // console.log(props.level.slice(0, 3));
-  // console.log(all_expended);
-
-  // if (ready) {
-
-  if (all_expended) {
-    console.log(`${props.level.slice(0, 3)}: all expended`);
-  } else {
-    console.log(`${props.level.slice(0, 3)}: slot available`);
-  }
-  return (
-    <div className="SpellSlotRow row">
-      <div className="col-8 level-disp d-flex justify-content-start">
-        {props.level.slice(0, 10)}
-      </div>
-      <div className="col-4 spell-slots-display d-flex justify-content-end">
-        <div className="row">
-          {props.slots.map((slot) => {
-            return (
-              <ExpendableSlot
-                key={`expendable-${slot.expend_id}`}
-                id={slot.expend_id}
-                updateBool={updateBool}
-              />
-            );
-          })}
+  if (ready) {
+    console.log(all_expended);
+    return (
+      <div className="SpellSlotRow row">
+        <div className="col-8 level-disp d-flex justify-content-start">
+          {props.level.slice(0, 10)}
+        </div>
+        <div className="col-4 spell-slots-display d-flex justify-content-end">
+          <div className="row">
+            {id_arr.map((id) => {
+              return (
+                <ExpendableSlot
+                  key={`${id}-expendable-slot`}
+                  id={id}
+                  expended={slots[`${id}`]}
+                  updateBool={updateBool}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  );
-  // } else {
-  //   checkIfAllExpended();
-  // }
+    );
+  } else {
+    axios
+      .get(`${expendedAPIUrl}/${expend_ids}`)
+      .then(processExpendedStatus)
+      .catch((err) => console.log(err));
+  }
 }
