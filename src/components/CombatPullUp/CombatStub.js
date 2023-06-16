@@ -30,7 +30,7 @@ export default function CombatStub(props) {
         <div className="CombatStub">
           <div className="row py-1">
             <div className="col-5 action-name">{props.spells[0]}</div>
-            <button className="btn standard-sm-btn cast-btn col-1">CAST</button>
+            <div className="col-7"></div>
           </div>
           <div className="cast-levels row py-1 d-flex justify-content-end">
             {slots.map((slot) => {

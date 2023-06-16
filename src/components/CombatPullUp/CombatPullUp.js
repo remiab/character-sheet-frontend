@@ -4,6 +4,7 @@ import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/ch
 import CastTimeCard from "./CastTimeCard";
 import HealthPools from "../HealthPools/HealthPools";
 import { CastAbjContext } from "../../Contexts/CastAbjContext";
+import { CombatContext } from "../../Contexts/CastLevelSpellContext";
 import Expendables from "./Expendables/Expendables";
 
 export default function CombatPullUp() {
@@ -15,7 +16,11 @@ export default function CombatPullUp() {
     BA: {},
     Rn: {},
   };
+  // const [all_expended, setAllExpended] = useState(false);
+  let expended_dict = {};
+  const [trigger_exp_dict, setExpDict] = useState(false);
   const [abj_trigger, setAbjTrigger] = useState(null);
+  const [ext_expendable_trigger, setExtTrigger] = useState(false);
 
   function handleResponse(response) {
     let times = ["A", "BA", "Rn"];
@@ -36,44 +41,75 @@ export default function CombatPullUp() {
     setReady(true);
   }
 
+  console.log(expended_dict);
+
   if (ready) {
     return (
       <div className="CombatPullUp">
         <div className=" row d-flex py-3">
           <div className="col-7">
-            <Expendables />
+            {/* <Expendables /> */}
+            <CombatContext.Provider
+              value={{ expended_dict, trigger_exp_dict, setExpDict }}
+            >
+              <Expendables />
+            </CombatContext.Provider>
           </div>
           <div className="col-5">
-            <CastAbjContext.Provider value={{ abj_trigger, setAbjTrigger }}>
+            <CombatContext.Provider value={{ abj_trigger, setAbjTrigger }}>
               <HealthPools />
-            </CastAbjContext.Provider>
+            </CombatContext.Provider>
+            {/* <CastAbjContext.Provider value={{ abj_trigger, setAbjTrigger }}> */}
+            {/* <HealthPools /> */}
+            {/* </CastAbjContext.Provider> */}
           </div>
         </div>
         <div className=" row d-flex py-3">
           <div className="col-6">
-            <CastAbjContext.Provider value={setAbjTrigger}>
+            <CombatContext.Provider value={{ setAbjTrigger, expended_dict }}>
+              <CastTimeCard
+                key="An"
+                spells={castDict["A"]}
+                cast_time="Action"
+              />
+            </CombatContext.Provider>
+            {/* <CastAbjContext.Provider value={setAbjTrigger}>
               <CastTimeCard
                 key={"An"}
                 spells={castDict["A"]}
                 cast_time="Action"
               />
-            </CastAbjContext.Provider>
+            </CastAbjContext.Provider> */}
           </div>
           <div className="col-6">
-            <CastAbjContext.Provider value={setAbjTrigger}>
+            <CombatContext.Provider value={{ setAbjTrigger, expended_dict }}>
+              <CastTimeCard
+                key="BA"
+                spells={castDict["BA"]}
+                cast_time="Bonus Action"
+              />
+            </CombatContext.Provider>
+            {/* <CastAbjContext.Provider value={setAbjTrigger}>
               <CastTimeCard
                 key={"BA"}
                 spells={castDict["BA"]}
                 cast_time="Bonus Action"
               />
-            </CastAbjContext.Provider>
-            <CastAbjContext.Provider value={setAbjTrigger}>
+            </CastAbjContext.Provider> */}
+            <CombatContext.Provider value={{ setAbjTrigger, expended_dict }}>
+              <CastTimeCard
+                key="Rn"
+                spells={castDict["Rn"]}
+                cast_time="Reaction"
+              />
+            </CombatContext.Provider>
+            {/* <CastAbjContext.Provider value={setAbjTrigger}>
               <CastTimeCard
                 key={"Rn"}
                 spells={castDict["Rn"]}
                 cast_time="Reaction"
               />
-            </CastAbjContext.Provider>
+            </CastAbjContext.Provider> */}
           </div>
         </div>
       </div>

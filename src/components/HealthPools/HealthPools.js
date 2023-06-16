@@ -3,7 +3,8 @@ import DamangeInput from "./DamageInputGroup";
 import CurrentHP from "./CurrentHP";
 import TempHP from "./TempHP";
 import ArcaneWard from "./ArcaneWard";
-import { CastAbjContext } from "../../Contexts/CastAbjContext";
+// import { CastAbjContext } from "../../Contexts/CastAbjContext";
+import { CombatContext } from "../../Contexts/CastLevelSpellContext";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 import { stampTime } from "../functions";
 import axios from "axios";
@@ -16,8 +17,8 @@ export default function HealthPools() {
   const [maxPools, setMaxPools] = useState({});
   const [ready, setReady] = useState(false);
   const [damage, setDamage] = useState({});
-  const { abj_trigger } = useContext(CastAbjContext);
-  const { setAbjTrigger } = useContext(CastAbjContext);
+  const { abj_trigger } = useContext(CombatContext);
+  const { setAbjTrigger } = useContext(CombatContext);
   var DamagePools = {};
 
   function manageHealing(key) {

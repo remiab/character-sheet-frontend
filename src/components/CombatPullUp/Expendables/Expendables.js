@@ -25,7 +25,7 @@ export default function Expendables() {
   }
 
   if (ready) {
-    console.log(spell_slots);
+    // console.log(spell_slots);
     return (
       <div className={has_spell_slots ? "col-auto" : "d-none"}>
         <SpellSlots levels={spell_slots} />
