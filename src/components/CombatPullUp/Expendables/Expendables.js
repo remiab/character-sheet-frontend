@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import * as const_list from "../../../App.js";
 import axios from "axios";
 import SpellSlots from "./SpellSlots.js";
+import { CombatContext } from "../../../Contexts/CastLevelSpellContext.js";
 
 export default function Expendables() {
-  const [ready, setReady] = useState(false);
+  const { slot_reset } = useContext(CombatContext);
+  const { setSlotReset } = useContext(CombatContext);
+
   const [has_spell_slots, setHasSpellSlots] = useState(false);
   const [spell_slots, setSpellSlots] = useState(null);
   const character = const_list.character_name;
@@ -21,10 +24,10 @@ export default function Expendables() {
       //pass
     }
 
-    setReady(true);
+    setSlotReset(true);
   }
 
-  if (ready) {
+  if (slot_reset) {
     // console.log(spell_slots);
     return (
       <div className={has_spell_slots ? "col-auto" : "d-none"}>

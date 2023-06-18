@@ -1,12 +1,15 @@
 import React from "react";
 import "./CombatPullUp.css";
 import CastLevelBtn from "./CastLevelBtn";
+import { levelAbbr } from "../functions";
 
 export default function CombatStub(props) {
   let max_level = 5;
 
   let type = props.type; // will want this when have actions like unsettling presence etc
   let spell_dict = props.spells[1];
+
+  // console.log(props.slot_status);
 
   if ((type = "spell")) {
     if (spell_dict["level"] !== 0) {
@@ -39,6 +42,7 @@ export default function CombatStub(props) {
                   key={`${props.spells[0]}_${slot}`}
                   level={slot}
                   school={props.spells[1].school}
+                  available={props.slot_status[levelAbbr(slot).slice(0, 3)]}
                 />
               );
             })}

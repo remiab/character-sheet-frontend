@@ -1,14 +1,28 @@
 import React, { useContext } from "react";
-import LevelsDisplayDict from "../../LevelsDisplayDict";
+// import LevelsDisplayDict from "../../LevelsDisplayDict";
 // import { CastAbjContext } from "../../Contexts/CastAbjContext";
 import { CombatContext } from "../../Contexts/CastLevelSpellContext";
+import { levelAbbr } from "../functions";
+import axios from "axios";
 
 export default function CastLevelBtn(props) {
   const { setAbjTrigger } = useContext(CombatContext);
-  const { expended_dict } = useContext(CombatContext);
+  const { setSlotReset } = useContext(CombatContext);
+  // const { expended_dict } = useContext(CombatContext);
 
-  function checkIfAbj(event) {
-    event.preventDefault();
+  const expendableStatusAPIUrl = `http://127.0.0.1:5000/expendables/${props.available}/update`;
+  function resetSlot() {
+    setSlotReset(false);
+  }
+
+  function postExpendedUpdate(update) {
+    axios
+      .post(expendableStatusAPIUrl, update)
+      .then(resetSlot)
+      .catch((err) => console.log(err));
+  }
+
+  function checkIfAbj() {
     if (props.school === "abjuration") {
       setAbjTrigger(props.level * 2);
     } else {
@@ -16,25 +30,28 @@ export default function CastLevelBtn(props) {
     }
   }
 
-  function levelAbbr(level) {
-    if (level === 0) {
-      return level;
+  function attemptCast(event) {
+    event.preventDefault();
+    console.log(props.available);
+    let slot = props.available;
+    if (slot) {
+      checkIfAbj();
+      let update = {};
+      update["update_status"] = 1;
+      postExpendedUpdate(update);
     } else {
-      return LevelsDisplayDict(level).slice(0, 9);
+      //pass (do nothing if no slot available)
     }
   }
-  // console.log(expended_dict);
-
-  // console.log(levelAbbr(props.level), expended_dict[levelAbbr(props.level)]);
 
   return (
     <button
       className={
-        expended_dict[levelAbbr(props.level)]
-          ? "ClassLevelBtn level-btn standard-sm-btn cast-btn btn col-1 mx-1 disabled"
-          : "ClassLevelBtn level-btn standard-sm-btn cast-btn btn col-1 mx-1"
+        props.available
+          ? "ClassLevelBtn level-btn standard-sm-btn cast-btn btn col-1 mx-1"
+          : "ClassLevelBtn level-btn standard-sm-btn cast-btn btn col-1 mx-1 disabled"
       }
-      onClick={checkIfAbj}
+      onClick={attemptCast}
     >
       {levelAbbr(props.level).slice(0, 3)}
     </button>

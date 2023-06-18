@@ -20,7 +20,7 @@ export default function CombatPullUp() {
   let expended_dict = {};
   const [trigger_exp_dict, setExpDict] = useState(false);
   const [abj_trigger, setAbjTrigger] = useState(null);
-  const [ext_expendable_trigger, setExtTrigger] = useState(false);
+  const [slot_reset, setSlotReset] = useState(false);
 
   function handleResponse(response) {
     let times = ["A", "BA", "Rn"];
@@ -50,7 +50,13 @@ export default function CombatPullUp() {
           <div className="col-7">
             {/* <Expendables /> */}
             <CombatContext.Provider
-              value={{ expended_dict, trigger_exp_dict, setExpDict }}
+              value={{
+                expended_dict,
+                trigger_exp_dict,
+                setExpDict,
+                slot_reset,
+                setSlotReset,
+              }}
             >
               <Expendables />
             </CombatContext.Provider>
@@ -59,14 +65,11 @@ export default function CombatPullUp() {
             <CombatContext.Provider value={{ abj_trigger, setAbjTrigger }}>
               <HealthPools />
             </CombatContext.Provider>
-            {/* <CastAbjContext.Provider value={{ abj_trigger, setAbjTrigger }}> */}
-            {/* <HealthPools /> */}
-            {/* </CastAbjContext.Provider> */}
           </div>
         </div>
         <div className=" row d-flex py-3">
           <div className="col-6">
-            <CombatContext.Provider value={{ setAbjTrigger, expended_dict }}>
+            <CombatContext.Provider value={{ setAbjTrigger, setSlotReset }}>
               <CastTimeCard
                 key="An"
                 spells={castDict["A"]}
@@ -82,7 +85,7 @@ export default function CombatPullUp() {
             </CastAbjContext.Provider> */}
           </div>
           <div className="col-6">
-            <CombatContext.Provider value={{ setAbjTrigger, expended_dict }}>
+            <CombatContext.Provider value={{ setAbjTrigger, setSlotReset }}>
               <CastTimeCard
                 key="BA"
                 spells={castDict["BA"]}
@@ -96,7 +99,7 @@ export default function CombatPullUp() {
                 cast_time="Bonus Action"
               />
             </CastAbjContext.Provider> */}
-            <CombatContext.Provider value={{ setAbjTrigger, expended_dict }}>
+            <CombatContext.Provider value={{ setAbjTrigger, setSlotReset }}>
               <CastTimeCard
                 key="Rn"
                 spells={castDict["Rn"]}
