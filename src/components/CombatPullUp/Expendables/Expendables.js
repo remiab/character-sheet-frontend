@@ -7,7 +7,8 @@ import { CombatContext } from "../../../Contexts/CastLevelSpellContext.js";
 export default function Expendables() {
   const { slot_reset } = useContext(CombatContext);
   const { setSlotReset } = useContext(CombatContext);
-
+  const { slot_available } = useContext(CombatContext);
+  const [ready, setReady] = useState(false);
   const [has_spell_slots, setHasSpellSlots] = useState(false);
   const [spell_slots, setSpellSlots] = useState(null);
   const character = const_list.character_name;
@@ -24,10 +25,10 @@ export default function Expendables() {
       //pass
     }
 
-    setSlotReset(true);
+    setReady(true);
   }
 
-  if (slot_reset) {
+  if (ready) {
     // console.log(spell_slots);
     return (
       <div className={has_spell_slots ? "col-auto" : "d-none"}>

@@ -8,11 +8,12 @@ import axios from "axios";
 
 export default function CastTimeCard(props) {
   const character = const_list.character_name;
-  const { slot_ready } = useContext(CombatContext);
-  const { setSlotReady } = useContext(CombatContext);
+  const { slot_reset } = useContext(CombatContext);
+  const { slot_available } = useContext(CombatContext);
+  const { setSlotReset } = useContext(CombatContext);
   const spellSlotAPIURl = `http://127.0.0.1:5000/${character}/spell_slots/`;
   const [slot_status, setSlotStatus] = useState({});
-  const [ready, setReady] = useState(false);
+  // const [ready, setReady] = useState(false);
   let time = props.cast_time;
   let max_level = 5;
   let levels_arr = [];
@@ -25,10 +26,11 @@ export default function CastTimeCard(props) {
 
   function processAvailableSlots(response) {
     setSlotStatus(response.data);
-    setReady(true);
+    // setReady(true);
+    setSlotReset(true);
   }
-
-  if (ready) {
+  if (slot_reset && slot_available) {
+    // if (ready) {
     return (
       <div className="CastTimeCard">
         <h4 className="card-title cast-time-group">{time}</h4>

@@ -3,7 +3,6 @@ import axios from "axios";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 import CastTimeCard from "./CastTimeCard";
 import HealthPools from "../HealthPools/HealthPools";
-import { CastAbjContext } from "../../Contexts/CastAbjContext";
 import { CombatContext } from "../../Contexts/CastLevelSpellContext";
 import Expendables from "./Expendables/Expendables";
 
@@ -16,11 +15,10 @@ export default function CombatPullUp() {
     BA: {},
     Rn: {},
   };
-  // const [all_expended, setAllExpended] = useState(false);
-  let expended_dict = {};
-  const [trigger_exp_dict, setExpDict] = useState(false);
+
   const [abj_trigger, setAbjTrigger] = useState(null);
   const [slot_reset, setSlotReset] = useState(false);
+  const [slot_available, setSlotAvailable] = useState(false);
 
   function handleResponse(response) {
     let times = ["A", "BA", "Rn"];
@@ -40,22 +38,17 @@ export default function CombatPullUp() {
     setCastDict(cast_time_dict);
     setReady(true);
   }
-
-  console.log(expended_dict);
-
   if (ready) {
     return (
       <div className="CombatPullUp">
         <div className=" row d-flex py-3">
           <div className="col-7">
-            {/* <Expendables /> */}
             <CombatContext.Provider
               value={{
-                expended_dict,
-                trigger_exp_dict,
-                setExpDict,
                 slot_reset,
                 setSlotReset,
+                slot_available,
+                setSlotAvailable,
               }}
             >
               <Expendables />
@@ -69,50 +62,51 @@ export default function CombatPullUp() {
         </div>
         <div className=" row d-flex py-3">
           <div className="col-6">
-            <CombatContext.Provider value={{ setAbjTrigger, setSlotReset }}>
+            <CombatContext.Provider
+              value={{
+                setAbjTrigger,
+                slot_reset,
+                slot_available,
+                setSlotReset,
+              }}
+            >
               <CastTimeCard
                 key="An"
                 spells={castDict["A"]}
                 cast_time="Action"
               />
             </CombatContext.Provider>
-            {/* <CastAbjContext.Provider value={setAbjTrigger}>
-              <CastTimeCard
-                key={"An"}
-                spells={castDict["A"]}
-                cast_time="Action"
-              />
-            </CastAbjContext.Provider> */}
           </div>
           <div className="col-6">
-            <CombatContext.Provider value={{ setAbjTrigger, setSlotReset }}>
+            <CombatContext.Provider
+              value={{
+                setAbjTrigger,
+                slot_reset,
+                slot_available,
+                setSlotReset,
+              }}
+            >
               <CastTimeCard
                 key="BA"
                 spells={castDict["BA"]}
                 cast_time="Bonus Action"
               />
             </CombatContext.Provider>
-            {/* <CastAbjContext.Provider value={setAbjTrigger}>
-              <CastTimeCard
-                key={"BA"}
-                spells={castDict["BA"]}
-                cast_time="Bonus Action"
-              />
-            </CastAbjContext.Provider> */}
-            <CombatContext.Provider value={{ setAbjTrigger, setSlotReset }}>
+
+            <CombatContext.Provider
+              value={{
+                setAbjTrigger,
+                slot_reset,
+                slot_available,
+                setSlotReset,
+              }}
+            >
               <CastTimeCard
                 key="Rn"
                 spells={castDict["Rn"]}
                 cast_time="Reaction"
               />
             </CombatContext.Provider>
-            {/* <CastAbjContext.Provider value={setAbjTrigger}>
-              <CastTimeCard
-                key={"Rn"}
-                spells={castDict["Rn"]}
-                cast_time="Reaction"
-              />
-            </CastAbjContext.Provider> */}
           </div>
         </div>
       </div>

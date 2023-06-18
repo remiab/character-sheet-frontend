@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-// import LevelsDisplayDict from "../../LevelsDisplayDict";
-// import { CastAbjContext } from "../../Contexts/CastAbjContext";
 import { CombatContext } from "../../Contexts/CastLevelSpellContext";
 import { levelAbbr } from "../functions";
 import axios from "axios";
@@ -8,9 +6,9 @@ import axios from "axios";
 export default function CastLevelBtn(props) {
   const { setAbjTrigger } = useContext(CombatContext);
   const { setSlotReset } = useContext(CombatContext);
-  // const { expended_dict } = useContext(CombatContext);
 
   const expendableStatusAPIUrl = `http://127.0.0.1:5000/expendables/${props.available}/update`;
+
   function resetSlot() {
     setSlotReset(false);
   }
@@ -32,7 +30,6 @@ export default function CastLevelBtn(props) {
 
   function attemptCast(event) {
     event.preventDefault();
-    console.log(props.available);
     let slot = props.available;
     if (slot) {
       checkIfAbj();
