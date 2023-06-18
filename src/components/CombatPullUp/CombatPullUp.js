@@ -16,9 +16,11 @@ export default function CombatPullUp() {
     Rn: {},
   };
 
-  const [abj_trigger, setAbjTrigger] = useState(null);
   const [slot_reset, setSlotReset] = useState(false);
   const [slot_available, setSlotAvailable] = useState(false);
+
+  const [healthPools, setHealthPools] = useState({});
+  const [maxPools, setMaxPools] = useState({});
 
   function handleResponse(response) {
     let times = ["A", "BA", "Rn"];
@@ -55,7 +57,15 @@ export default function CombatPullUp() {
             </CombatContext.Provider>
           </div>
           <div className="col-5">
-            <CombatContext.Provider value={{ abj_trigger, setAbjTrigger }}>
+            <CombatContext.Provider
+              value={{
+                healthPools,
+                setHealthPools,
+                maxPools,
+                setMaxPools,
+                slot_reset,
+              }}
+            >
               <HealthPools />
             </CombatContext.Provider>
           </div>
@@ -64,7 +74,8 @@ export default function CombatPullUp() {
           <div className="col-6">
             <CombatContext.Provider
               value={{
-                setAbjTrigger,
+                healthPools,
+                maxPools,
                 slot_reset,
                 slot_available,
                 setSlotReset,
@@ -80,7 +91,8 @@ export default function CombatPullUp() {
           <div className="col-6">
             <CombatContext.Provider
               value={{
-                setAbjTrigger,
+                healthPools,
+                maxPools,
                 slot_reset,
                 slot_available,
                 setSlotReset,
@@ -95,7 +107,8 @@ export default function CombatPullUp() {
 
             <CombatContext.Provider
               value={{
-                setAbjTrigger,
+                healthPools,
+                maxPools,
                 slot_reset,
                 slot_available,
                 setSlotReset,

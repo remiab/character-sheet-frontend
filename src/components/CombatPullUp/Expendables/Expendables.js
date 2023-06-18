@@ -1,13 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import * as const_list from "../../../App.js";
 import axios from "axios";
 import SpellSlots from "./SpellSlots.js";
-import { CombatContext } from "../../../Contexts/CastLevelSpellContext.js";
 
 export default function Expendables() {
-  const { slot_reset } = useContext(CombatContext);
-  const { setSlotReset } = useContext(CombatContext);
-  const { slot_available } = useContext(CombatContext);
   const [ready, setReady] = useState(false);
   const [has_spell_slots, setHasSpellSlots] = useState(false);
   const [spell_slots, setSpellSlots] = useState(null);
@@ -19,7 +15,6 @@ export default function Expendables() {
     try {
       setSpellSlots(data.Spell_Slots);
       delete data["Spell_Slots"];
-      //   console.log(spell_slots);
       setHasSpellSlots(true);
     } catch {
       //pass
@@ -29,7 +24,6 @@ export default function Expendables() {
   }
 
   if (ready) {
-    // console.log(spell_slots);
     return (
       <div className={has_spell_slots ? "col-auto" : "d-none"}>
         <SpellSlots levels={spell_slots} />

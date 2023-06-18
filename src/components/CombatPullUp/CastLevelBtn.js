@@ -2,12 +2,18 @@ import React, { useContext } from "react";
 import { CombatContext } from "../../Contexts/CastLevelSpellContext";
 import { levelAbbr } from "../functions";
 import axios from "axios";
+import { stampTime } from "../functions";
+import * as const_list from "../../App";
 
 export default function CastLevelBtn(props) {
-  const { setAbjTrigger } = useContext(CombatContext);
+  const character = const_list.character_name;
+
   const { setSlotReset } = useContext(CombatContext);
+  const { healthPools } = useContext(CombatContext);
+  const { maxPools } = useContext(CombatContext);
 
   const expendableStatusAPIUrl = `http://127.0.0.1:5000/expendables/${props.available}/update`;
+  const abjUpdateAPIUrl = `http://127.0.0.1:5000/${character}/hit_points/arcane_ward/update`;
 
   function resetSlot() {
     setSlotReset(false);
@@ -22,7 +28,23 @@ export default function CastLevelBtn(props) {
 
   function checkIfAbj() {
     if (props.school === "abjuration") {
-      setAbjTrigger(props.level * 2);
+      let update = {};
+      let max = parseInt(maxPools["arcane_ward"]);
+      let current = parseInt(healthPools["arcane_ward"]);
+      let to_add = props.level * 2;
+
+      if (current + to_add > max) {
+        update["replen"] = max - current;
+      } else {
+        update["replen"] = to_add;
+      }
+      update["max"] = max;
+      update["dmg_occurred"] = stampTime();
+      update["event_tag"] = `${props.spell.toLowerCase()} cast`;
+      axios
+        .put(abjUpdateAPIUrl, update)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
     } else {
       //pass
     }
