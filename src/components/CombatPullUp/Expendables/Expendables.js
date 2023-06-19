@@ -15,7 +15,6 @@ export default function Expendables() {
     try {
       setSpellSlots(data.Spell_Slots);
       delete data["Spell_Slots"];
-      //   console.log(spell_slots);
       setHasSpellSlots(true);
     } catch {
       //pass
@@ -25,7 +24,6 @@ export default function Expendables() {
   }
 
   if (ready) {
-    // console.log(spell_slots);
     return (
       <div className={has_spell_slots ? "col-auto" : "d-none"}>
         <SpellSlots levels={spell_slots} />

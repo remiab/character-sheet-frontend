@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import DamangeInput from "./DamageInputGroup";
 import CurrentHP from "./CurrentHP";
 import TempHP from "./TempHP";
 import ArcaneWard from "./ArcaneWard";
-// import { CastAbjContext } from "../../Contexts/CastAbjContext";
 import { CombatContext } from "../../Contexts/CastLevelSpellContext";
 import * as constList from "C:/Users/slkbe/Documents/character-sheet-frontend/character-sheet/src/App";
 import { stampTime } from "../functions";
@@ -11,14 +10,19 @@ import axios from "axios";
 
 export default function HealthPools() {
   const character = constList.character_name;
+  const { slot_reset } = useContext(CombatContext);
+
   const HealthPools = {};
-  const [healthPools, setHealthPools] = useState({});
+  const { healthPools } = useContext(CombatContext);
+  const { setHealthPools } = useContext(CombatContext);
+
   const MaxPools = {};
-  const [maxPools, setMaxPools] = useState({});
+  const { maxPools } = useContext(CombatContext);
+  const { setMaxPools } = useContext(CombatContext);
+
   const [ready, setReady] = useState(false);
   const [damage, setDamage] = useState({});
-  const { abj_trigger } = useContext(CombatContext);
-  const { setAbjTrigger } = useContext(CombatContext);
+
   var DamagePools = {};
 
   function manageHealing(key) {
@@ -40,7 +44,6 @@ export default function HealthPools() {
     update["dmg_occurred"] = damage["dmg_occurred"];
     update["event"] = damage["event"];
 
-    // console.log(update);
     let putApiUrl = `/${character}/hit_points/update`;
     await axios.put(putApiUrl, update).catch((err) => console.log(err));
 
@@ -81,12 +84,7 @@ export default function HealthPools() {
 
   function allocateDamage() {
     if (damage["damage"] > 0) {
-      if (damage["type"] === "aw") {
-        manageHealing("arcane_ward");
-        setAbjTrigger(null);
-      } else {
-        manageHealing("hp");
-      }
+      manageHealing("hp");
     } else {
       manageDamage();
     }
@@ -127,15 +125,7 @@ export default function HealthPools() {
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => {
-    if (abj_trigger) {
-      let ward_replen = abj_trigger;
-      setAbjTrigger(null);
-      recordDamage(ward_replen, "aw", "demo");
-    }
-  });
-
-  if (ready) {
+  if (ready && slot_reset) {
     return (
       <div className="HealthPools row d-flex justify-content-between align-items-center">
         <div className="col-md-2">

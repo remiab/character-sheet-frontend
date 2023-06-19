@@ -1,3 +1,5 @@
+import LevelsDisplayDict from "../LevelsDisplayDict";
+
 export function formatDate(date) {
   let return_date = `${date.getFullYear()}-${
     date.getMonth() + 1
@@ -9,4 +11,12 @@ export function formatDate(date) {
 export function stampTime() {
   let occurred = new Date();
   return formatDate(occurred);
+}
+
+export function levelAbbr(level) {
+  if (level === 0) {
+    return level;
+  } else {
+    return LevelsDisplayDict(level).slice(0, 9);
+  }
 }
