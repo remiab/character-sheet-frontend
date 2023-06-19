@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import SpellSlotGroup from "./SpellSlotGroup";
 
 export default function SpellSlots(props) {
-  const [higher_level, setHigherLevel] = useState(false);
-
   let first_group = {};
   let second_group = {};
-  if (Object.keys(props.levels).length > 5) {
+
+  function assignGroups() {
     let i = 0;
     for (const [key, value] of Object.entries(props.levels)) {
-      if (i <= Math.ceil(Object.keys(props.levels).length / 2)) {
+      if (i < Math.ceil(Object.keys(props.levels).length / 2)) {
         first_group[key] = value;
         i += 1;
       } else {
@@ -17,24 +16,32 @@ export default function SpellSlots(props) {
         i += 1;
       }
     }
-    setHigherLevel(true);
   }
-  if (higher_level) {
+
+  assignGroups();
+
+  if (Object.keys(second_group).length > 0) {
     return (
-      <div className="SpellSlots row">
-        <div className="col-6">
-          <SpellSlotGroup group={first_group} />
-        </div>
-        <div className="col-6">
-          <SpellSlotGroup group={second_group} />
+      <div className="SpellSlots">
+        <div className="expendable-header">Spell Slots</div>
+        <div className="row">
+          <div className="col-7">
+            <SpellSlotGroup group={first_group} />
+          </div>
+          <div className="col-5">
+            <SpellSlotGroup group={second_group} />
+          </div>
         </div>
       </div>
     );
   } else {
     return (
-      <div className="SpellSlots row">
-        <div className="col-12">
-          <SpellSlotGroup group={props.levels} />
+      <div className="SpellSlots">
+        <div className="expendable-header">Spell Slots</div>
+        <div className="row">
+          <div className="col-12">
+            <SpellSlotGroup group={first_group} />
+          </div>
         </div>
       </div>
     );

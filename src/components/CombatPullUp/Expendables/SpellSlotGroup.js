@@ -7,7 +7,7 @@ export default function SpellSlotGroup(props) {
     <div className="SpellSlotGroup">
       {Object.entries(group).map(([slot_group, slots]) => {
         return (
-          <div key={slot_group} className="px-2">
+          <div key={slot_group} className="px-1">
             <SpellSlotRow slots={slots} level={slot_group} />
           </div>
         );

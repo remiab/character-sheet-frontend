@@ -43,8 +43,8 @@ export default function CombatPullUp() {
   if (ready) {
     return (
       <div className="CombatPullUp">
-        <div className=" row d-flex py-3">
-          <div className="col-7">
+        <div className=" row d-flex py-3 align-items-center">
+          <div className="col-8">
             <CombatContext.Provider
               value={{
                 slot_reset,
@@ -56,7 +56,7 @@ export default function CombatPullUp() {
               <Expendables />
             </CombatContext.Provider>
           </div>
-          <div className="col-5">
+          <div className="col-4">
             <CombatContext.Provider
               value={{
                 healthPools,

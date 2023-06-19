@@ -12,6 +12,7 @@
   background-color: var(--primary-background-dark);
   border-radius: 10px;
   color: var(--primary-light-text-color);
+  padding-left: 20px;
 }
 
 .standard-sm-btn {

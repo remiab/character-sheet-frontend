@@ -127,7 +127,7 @@ export default function HealthPools() {
 
   if (ready && slot_reset) {
     return (
-      <div className="HealthPools row d-flex justify-content-between align-items-center">
+      <div className="HealthPools row gx-0 d-flex justify-content-between align-items-center">
         <div className="col-md-2">
           <DamangeInput recordDamage={recordDamage} />
         </div>

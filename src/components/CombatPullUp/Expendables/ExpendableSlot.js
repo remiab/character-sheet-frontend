@@ -25,7 +25,7 @@ export default function ExpendableSlot(props) {
 
   if (props.expended === 1) {
     return (
-      <div className="ExpendableSlot col-auto">
+      <div className="ExpendableSlot col-auto gx-2">
         <input
           type="checkbox"
           id={props.id}
@@ -37,7 +37,7 @@ export default function ExpendableSlot(props) {
     );
   } else {
     return (
-      <div className="ExpendableSlot col-auto">
+      <div className="ExpendableSlot col-auto gx-2">
         <input
           type="checkbox"
           id={props.id}
