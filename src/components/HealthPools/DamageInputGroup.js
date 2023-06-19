@@ -1,13 +1,9 @@
 import React from "react";
 import "./HealthPools.css";
-// import { formatDate } from "../functions";
 
 export default function DamageInputGroup(props) {
   function acceptDamage(event) {
     event.preventDefault();
-
-    // let occurred = new Date();
-    // occurred = formatDate(occurred);
 
     let damage_select = document.querySelector("#DamageInput");
     let damage_taken = damage_select.value;
@@ -17,10 +13,10 @@ export default function DamageInputGroup(props) {
     trigger_btn = trigger_btn.getAttribute("id");
 
     if (trigger_btn === "heal-btn") {
-      props.recordDamage(damage_taken, "heal", "test");
+      props.recordDamage(damage_taken, "heal", "healing");
     } else {
       damage_taken = damage_taken * -1;
-      props.recordDamage(damage_taken, "damage", "test");
+      props.recordDamage(damage_taken, "damage", "damage taken");
     }
     damage_select.value = "";
   }
