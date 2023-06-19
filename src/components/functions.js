@@ -20,3 +20,17 @@ export function levelAbbr(level) {
     return LevelsDisplayDict(level).slice(0, 9);
   }
 }
+
+export function assignGroups(subgroups, first_group, second_group) {
+  let i = 0;
+  for (const [key, value] of Object.entries(subgroups)) {
+    if (i < Math.ceil(Object.keys(subgroups).length / 2)) {
+      first_group[key] = value;
+      i += 1;
+    } else {
+      second_group[key] = value;
+      i += 1;
+    }
+  }
+  return [first_group, second_group];
+}

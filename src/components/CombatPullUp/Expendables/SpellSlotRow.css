@@ -11,4 +11,11 @@
 .level-disp {
   color: var(--primary-light-text-color);
   font-family: var(--primary-font-family);
+  font-size: 12px;
+}
+
+.expendable-header {
+  color: var(--primary-light-text-color);
+  font-family: var(--primary-font-family);
+  font-size: 14px;
 }

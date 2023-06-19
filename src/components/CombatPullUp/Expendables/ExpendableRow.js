@@ -1,24 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import ExpendableSlot from "./ExpendableSlot";
-import "./SpellSlotRow.css";
 import axios from "axios";
-import { CombatContext } from "../../../Contexts/CastLevelSpellContext";
+import "./SpellSlotRow.css";
 
-export default function SpellSlotRow(props) {
-  const { slot_reset } = useContext(CombatContext);
-  const { setSlotReset } = useContext(CombatContext);
-  const { slot_available } = useContext(CombatContext);
-  const { setSlotAvailable } = useContext(CombatContext);
+export default function ExpendableRow(props) {
+  const [ready, setReady] = useState(false);
 
-  const [slots, setSlots] = useState({});
   const expendedAPIUrl = "http://127.0.0.1:5000/expendables/";
+  const [slots, setSlots] = useState({});
 
   let slots_dict = {};
   let id_arr = [];
 
   function updateBool() {
-    setSlotAvailable(false);
-    setSlotReset(false);
+    setReady(false);
   }
 
   function processExpendedStatus(response) {
@@ -26,26 +21,26 @@ export default function SpellSlotRow(props) {
       slots_dict[response.data[i].expend_id] = response.data[i].expended;
     }
     setSlots(slots_dict);
-    setSlotAvailable(true);
+    setReady(true);
   }
 
-  for (let i = 0; i < props.slots.length; i++) {
-    id_arr.push(props.slots[i].expend_id);
+  for (let i = 0; i < props.subgroup[1].length; i++) {
+    id_arr.push(props.subgroup[1][i].expend_id);
   }
   let expend_ids = id_arr.toString();
 
-  if (slot_reset && slot_available) {
+  if (ready) {
     return (
-      <div className="SpellSlotRow row">
-        <div className="col-6 level-disp d-flex justify-content-start">
-          {props.level.slice(0, 10)}
+      <div className="ExpendableRow row d-flex justify-content-between">
+        <div className="col-auto gx-3 d-flex justify-content-start expendable-header">
+          {props.subgroup[0]}
         </div>
-        <div className="col-6 spell-slots-display d-flex justify-content-start">
+        <div className="col-auto gx-3 d-flex justify-content-end">
           <div className="row">
             {id_arr.map((id) => {
               return (
                 <ExpendableSlot
-                  key={`sse-${id}`}
+                  key={`nse-${id}`}
                   id={id}
                   expended={slots[`${id}`]}
                   updateBool={updateBool}

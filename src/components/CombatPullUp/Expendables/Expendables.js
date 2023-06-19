@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as const_list from "../../../App.js";
 import axios from "axios";
 import SpellSlots from "./SpellSlots.js";
-import ExpendableGroup from "./ExpendableGroup.js";
+import NonSpellExpendables from "./NonSpellExpendables.js";
 
 export default function Expendables() {
   const [ready, setReady] = useState(false);
@@ -21,25 +21,18 @@ export default function Expendables() {
     } catch {
       //pass
     }
-    // console.log(data);
     setNonSpellExpendables(data);
     setReady(true);
   }
 
   if (ready) {
     return (
-      <div className="Expendables row">
+      <div className="Expendables row align-items-center">
         <div className={has_spell_slots ? "col-6" : "d-none"}>
           <SpellSlots levels={spell_slots} />
         </div>
         <div className={has_spell_slots ? "col-6" : "col-12"}>
-          {Object.entries(non_spell_expendables).map((group) => {
-            return (
-              <div className="row">
-                <ExpendableGroup group={group} />
-              </div>
-            );
-          })}
+          <NonSpellExpendables expendables={non_spell_expendables} />
         </div>
       </div>
     );
